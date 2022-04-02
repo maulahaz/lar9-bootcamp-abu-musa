@@ -1,0 +1,3 @@
+<?= $currentMenu ?>
+<br>
+<?= $currentSubMenu ?>

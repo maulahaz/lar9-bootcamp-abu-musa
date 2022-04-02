@@ -1,0 +1,21 @@
+== 2022-04-01, @MHz-FanlessPC ==
+* Kalo pake "php park serve", utk menuju ke 'public folder' -- penulisan "public" nggak perlu di tulis,
+  tapi klo dari htdocs, penulisan "public" wajib di tulis.
+  contoh:
+  <link rel="stylesheet" href="{{ url('t_adminlte3/plugins/fontawesome-free/css/all.min.css') }}">
+  <link rel="stylesheet" href="{{ url('public/t_adminlte3/plugins/fontawesome-free/css/all.min.css') }}"> 
+
+Install Laravel 9:
+- https://santrikoding.com/tutorial-restful-api-di-laravel-9-1-cara-install-laravel-9
+- https://musaamin.web.id/install-laravel9-ubuntu2004/
+
+* Laravel 9, harus pake PHP 8. 
+* Termasuk Composer nya pun, harus di install dari PHP 8
+
+*. Add PHP 8.1.4 ke Laragon:
+- https://dev.to/dendihandian/php-8-on-laragon-e8j
+-- D/L php 8:
+--- https://windows.php.net/download
+--- pilih yg Non-Thread
+* Klo pas nginstall Composer nya pake Php < versi 8,,, harus di remove dulu ("C:\Users\abu_ahyar\composer"), --> Trus Install lagi Composer nya menggunakan Php versi 8.
+** Refresh Composer setelah di Remove dan di install lagi, dg cara: Tutup semua Exlorer, trus buka CMD, dan ketik composer
