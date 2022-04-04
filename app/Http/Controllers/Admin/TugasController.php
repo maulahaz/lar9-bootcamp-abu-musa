@@ -43,8 +43,10 @@ class TugasController extends Controller
 
         $post = Tugas::create([
             'title' => $request->title,
-            'start_at' => date('Y-m-d H:i:s'),
-            'deadline_at' => date('Y-m-d H:i:s'),
+            // 'start_at' => date('Y-m-d H:i:s'),
+            // 'deadline_at' => date('Y-m-d H:i:s'),
+            'start_at' => date("Y-m-d H:i:s", strtotime($request->start_at)),
+            'deadline_at' => date("Y-m-d H:i:s", strtotime($request->deadline_at)),
             'category_id' => 1,
             'notes' => $request->notes,
             'created_at' => date('Y-m-d H:i:s'),
@@ -74,8 +76,8 @@ class TugasController extends Controller
 
         $postedData = [
             'title' => $request->title,
-            'start_at' => $request->start_at,
-            'deadline_at' => $request->deadline_at,
+            'start_at' => date("Y-m-d H:i:s", strtotime($request->start_at)),
+            'deadline_at' => date("Y-m-d H:i:s", strtotime($request->deadline_at)),
             'category_id' => $request->category_id,
             'notes' => $request->notes,
             'updated_by' => Auth::user()->username,

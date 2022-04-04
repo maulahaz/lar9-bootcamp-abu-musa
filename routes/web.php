@@ -33,7 +33,8 @@ Route::get('account/dashboard', [AccountController::class, 'dashboard']);
 Route::get('account/profile', [AccountController::class, 'profile']);
 
 //--DASHBOARD:
-Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
+Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
+// Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
 //--USER:
 Route::resource('admin/user', UserController::class);

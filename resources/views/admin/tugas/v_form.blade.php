@@ -51,31 +51,43 @@
               <div class="form-group row">
                 <label class="col-sm-2 col-form-label">Judul Tugas</label>
                 <div class="col-sm-10">
-                  <input type="text" class="form-control" name="title" value="{{ !empty($dtTugas) ? $dtTugas->title : null }}" placeholder="Isi Judul Tugas">
+                  <input type="text" class="form-control" name="title" value="{{ !empty($dtTugas) ? $dtTugas->title : old('title') }}" placeholder="Isi Judul Tugas">
                 </div>
               </div>
               <div class="form-group row">
                 <label class="col-sm-2 col-form-label">Waktu Mulai</label>
-                <div class="col-sm-10">
-                  <input type="text" class="form-control" name="start_at" value="{{ !empty($dtTugas) ? $dtTugas->start_at : null }}" placeholder="Isi Waktu Mulai">
+                <div class="col-sm-2">
+                  <div class="input-group date" id="start_date" data-target-input="nearest">
+                      <input type="text" class="form-control datetimepicker-input" data-target="#start_date" name="start_at" value="{{ !empty($dtTugas) ? $dtTugas->start_at : old('start_at') }}">
+                      <div class="input-group-append" data-target="#start_date" data-toggle="datetimepicker">
+                          <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                      </div>
+                  </div>
                 </div>
+                  
               </div>
               <div class="form-group row">
                 <label class="col-sm-2 col-form-label">Waktu Deadline</label>
-                <div class="col-sm-10">
-                  <input type="text" class="form-control" name="deadline_at" value="{{ !empty($dtTugas) ? $dtTugas->deadline_at : null }}" placeholder="Isi Waktu Deadline">
+                <div class="col-sm-2">
+                  <div class="input-group date" id="deadline_date" data-target-input="nearest">
+                      <input type="text" class="form-control datetimepicker-input" data-target="#deadline_date" name="deadline_at" value="{{ !empty($dtTugas) ? $dtTugas->deadline_at : old('deadline_at') }}">
+                      <div class="input-group-append" data-target="#deadline_date" data-toggle="datetimepicker">
+                          <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                      </div>
+                  </div>
                 </div>
+                  
               </div>
               <div class="form-group row">
                 <label class="col-sm-2 col-form-label">Kategori</label>
                 <div class="col-sm-10">
-                  <input type="text" class="form-control" name="category_id" value="{{ !empty($dtTugas) ? $dtTugas->category_id : null }}" placeholder="Isi Kategori">
+                  <input type="text" class="form-control" name="category_id" value="{{ !empty($dtTugas) ? $dtTugas->category_id : old('category_id') }}" placeholder="Isi Kategori">
                 </div>
               </div>
               <div class="form-group row">
                 <label class="col-sm-2 col-form-label">Keterangan</label>
                 <div class="col-sm-10">
-                  <textarea class="form-control" name="notes" id="notes" rows="4" placeholder="Isi Keterangan">{{ !empty($dtTugas) ? $dtTugas->notes : null }}</textarea>
+                  <textarea class="form-control" name="notes" id="notes" rows="4" placeholder="Isi Keterangan">{{ !empty($dtTugas) ? $dtTugas->notes : old('notes') }}</textarea>
                 </div>
               </div>
             </div>
@@ -94,4 +106,18 @@
 
   </div><!-- /.container-fluid -->
 </section>
+@stop
+
+@section('jsFile')
+<script>
+  $(function () {
+    //Date picker
+    $('#start_date').datetimepicker({
+        format: 'DD-MMM-YYYY'
+    });
+    $('#deadline_date').datetimepicker({
+        format: 'DD-MMM-YYYY'
+    });
+  });
+</script>
 @stop

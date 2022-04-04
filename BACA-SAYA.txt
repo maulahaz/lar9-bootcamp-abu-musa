@@ -1,3 +1,13 @@
+== 2022-04-04, @MHz-FanlessPC ==
+* Query di Laravel:
+- $dtPengguna = DB::table('users')
+    ->whereNotIn('role_id', [88])
+    ->get();
+    tapi harus pake: use Illuminate\Support\Facades\DB;
+atau:
+User::whereNotIn('role_id', [88])->get();
+-- 88 harus berbentuk array
+
 == 2022-04-01, @MHz-FanlessPC ==
 * Kalo pake "php park serve", utk menuju ke 'public folder' -- penulisan "public" nggak perlu di tulis,
   tapi klo dari htdocs, penulisan "public" wajib di tulis.
