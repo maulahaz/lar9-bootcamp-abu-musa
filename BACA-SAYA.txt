@@ -29,3 +29,18 @@ Install Laravel 9:
 --- pilih yg Non-Thread
 * Klo pas nginstall Composer nya pake Php < versi 8,,, harus di remove dulu ("C:\Users\abu_ahyar\composer"), --> Trus Install lagi Composer nya menggunakan Php versi 8.
 ** Refresh Composer setelah di Remove dan di install lagi, dg cara: Tutup semua Exlorer, trus buka CMD, dan ketik composer
+
+Tips: PHP/HTML Formatter:
+- "Prettier" for HTML, CSS, and JavaScript files
+- "PHP Intelephense" for PHP files
+- edit settings.json manually in order to get them to work together:
+[
+    "intelephense.diagnostics.undefinedTypes": false,
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "[php]": {
+        "editor.defaultFormatter": "bmewburn.vscode-intelephense-client"
+    },
+]
+The settings use Intelephense as the formatter for PHP files and use Prettier as the formatter for all other files.
+
+Now I use Shift + Alt + F to format the files like everybody else.

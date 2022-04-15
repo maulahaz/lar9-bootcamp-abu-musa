@@ -108,7 +108,7 @@
 </section>
 @stop
 
-@section('jsFile')
+@push('scripts')
 <script>
   $(function () {
     //Date picker
@@ -120,4 +120,4 @@
     });
   });
 </script>
-@stop
+@endpush

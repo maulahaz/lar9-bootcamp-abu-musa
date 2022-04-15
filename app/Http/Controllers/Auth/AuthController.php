@@ -12,7 +12,7 @@ class AuthController extends Controller
 {
     public function __construct()
     {
-        $this->middleware(['guest']);
+        // $this->middleware(['guest']);
         $this->data['webTitle'] = 'Latihan Laravel';
         $this->data['pageTitle'] = 'App Login';
     }
@@ -35,7 +35,8 @@ class AuthController extends Controller
     		return back()->with('error', 'Invalid login details!');
     	}
 
-        return redirect()->route('dashboard');
+        // return redirect()->route('dashboard');
+        return redirect('account/profile');
     }
 
     public function register()
@@ -66,7 +67,6 @@ class AuthController extends Controller
     public function logout()
     {
         auth()->logout();
-
         return redirect()->route('login');
     }
 }

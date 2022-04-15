@@ -53,9 +53,30 @@ class UserController extends Controller
         return redirect('admin/tugas')->with('success', 'Well done, New data created!');
     }
 
+    public function updateStatusUser(Request $request)
+    {
+        if($request->ajax()){
+            $data = $request->all();
+            // echo "<pre>"; print_r($data); die();
+            if($data['status'] == 'Active'){
+                $updt_status = 'Inactive';
+            }elseif($data['status'] == 'Inactive'){
+                $updt_status = 'Active';
+            }
+
+            User::where('id', $data['user_id'])->update(['status' => $updt_status]);
+            return response()->json(['status' => $updt_status, 'user_id'=>$data['user_id']]);
+        }
+    }
+
     public function show($id)
     {
-        //
+        $dtUser = User::findOrFail($id);
+        // dd($dtUser);
+        $this->data['dtUser'] = $dtUser;
+        $this->data['updateID'] = $id;
+        $this->data['pageTitle'] = 'Update Pengguna : "'.$dtUser->username.'"';
+        return view('admin.user.v_edit_user', $this->data);
     }
 
     public function edit($id)
@@ -107,5 +128,16 @@ class UserController extends Controller
         }
 
         return redirect('admin/tugas');
+    }
+
+    public function hapus($id)
+    {
+        $dtUser = User::findOrFail($id);
+        dd($dtUser);
+        // if ($dtUser->delete()) {
+        //     Session::flash('success', 'Data has been deleted');
+        // }
+
+        // return redirect('admin/tugas');
     }
 }

@@ -54,6 +54,7 @@
                     <th>Email</th>
                     <th>Nama</th>
                     <th>Role</th>
+                    <th>Status</th>
                     <th>Photo</th>
                     <th>Aksi</th>
                   </tr>
@@ -67,10 +68,19 @@
                     <td>{{$row->email}}</td>
                     <td>{{$row->name}}</td>
                     <td>{{$row->role_id}}</td>
+                    <td>
+                      @if($row->status == 'Active')
+                        <a class="updateStatusUser" id="user-{{$row->id}}" user_id="{{ $row->id }}" href="javascript:void(0)">Active</a>
+                      @else
+                        <a class="updateStatusUser" id="user-{{$row->id}}" user_id="{{ $row->id }}" href="javascript:void(0)">Inactive</a>
+                      @endif
+                    </td>
                     <td>{{$row->picture}}</td>
                     <td>
                       <a href="{{ url('/admin/user/'.$row->id.'/edit') }}" class="btn btn-sm btn-warning"><i class="fa fa-edit"></i>&nbsp;Edit</a>
+                      <a href="{{ url('/admin/user/'.$row->id) }}" class="btn btn-sm btn-info"><i class="fa fa-edit"></i>&nbsp;Detail</a>
                       <button type="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#modal-delete-{{$row->id}}"><i class="fa fa-trash"></i>&nbsp;Delete</button>
+                      <a href="javascript:void(0)" class="btn btn-sm btn-warning confirmDelete" record="user" record_id="{{$row->id}}"><i class="fa fa-edit"></i>&nbsp;Hapus</a>
                     </td>
                     
                   </tr>
@@ -114,5 +124,9 @@
 </div>
 <!-- /.modal -->
 @endforeach
+
+@push('scripts')
+  <script src="{{url('js/mhz_script.js')}}"></script>
+@endpush
 
 @endsection

@@ -76,7 +76,7 @@
             <!-- /.card-body -->
             <div class="card-footer">
               <button type="submit" class="btn btn-info">Save</button>
-              <a href="{{ url('admin/materi') }}" class="btn btn-default float-right">Cancel</a>
+              <a href="{{ url('admin/materi') }}" class="btn btn-default">Cancel</a>
             </div>
             <!-- /.card-footer -->
           </form>

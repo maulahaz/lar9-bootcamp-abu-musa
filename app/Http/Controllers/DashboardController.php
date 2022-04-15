@@ -17,7 +17,7 @@ class DashboardController extends Controller
     public function index()
     {
         // die('test');
-        return view('user.v_dashboard', $this->data);
+        return view('account.v_dashboard', $this->data);
     }
 
 }

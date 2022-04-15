@@ -5,6 +5,9 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\MateriModel;
+// use Illuminate\Support\Facades\Auth;
+// use Illuminate\Support\Facades\Session;
+// use Illuminate\Support\Str;
 use Auth;
 use Str;
 use Session;
@@ -60,7 +63,13 @@ class MateriController extends Controller
 
     public function show($id)
     {
-        //
+        $dtMateri = MateriModel::findOrFail($id);
+        // dd($dtMateri);
+        $this->data['dtMateri'] = $dtMateri;
+        $this->data['updateID'] = $id;
+        $this->data['pageTitle'] = 'Detail Materi';
+        // dd($this->data);
+        return view('admin.materi.v_show', $this->data);
     }
 
     public function edit($id)
@@ -115,5 +124,25 @@ class MateriController extends Controller
         }
 
         return redirect('admin/materi');
+    }
+
+    public function uploadFile(Request $request, $id)
+    {
+        // dd($request);
+        $this->validate($request,[
+            'picture' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
+        ]);
+
+        $filename = $request->file('picture')->getClientOriginalName();
+        // $filepath = $request->file('picture')->store('public/uploads/materi');
+        $request->picture->move(public_path('uploads/materi'), $filename);
+
+        $postedData = [
+            'picture' => $filename,
+        ];
+        $dtMateri = MateriModel::findOrFail($id);
+        if ($dtMateri->update($postedData)) {
+            return redirect('admin/materi')->with('success', 'Well done, Image Has been uploaded');
+        }
     }
 }

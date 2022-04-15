@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\User;
+use Auth;
 
 class AccountController extends Controller
 {
@@ -16,11 +18,17 @@ class AccountController extends Controller
 
     public function dashboard()
     {
-        die('dashboard');
+        // die('dashboard');
+        return redirect('account/profile');
     }
 
     public function profile()
     {
-        die('profile');
+        $idUser = Auth::user()->id;
+        $dtUser = User::findOrFail($idUser);
+        $this->data['dtUser'] = $dtUser;
+        $this->data['pageTitle'] = 'Profil Pengguna';
+
+        return view('account.v_profile', $this->data);
     }
 }

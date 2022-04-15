@@ -22,9 +22,9 @@ use App\Http\Controllers\DashboardController;
 */
 
 //--AUTH:
-Route::get('login', [AuthController::class, 'login'])->name('login')->middleware('guest');;//
-Route::post('login', [AuthController::class, 'submit_login'])->middleware('guest');;
-Route::get('logout', [AuthController::class, 'logout'])->name('logout')->middleware('guest');;
+Route::get('login', [AuthController::class, 'login'])->name('login')->middleware('guest');
+Route::post('login', [AuthController::class, 'submit_login'])->middleware('guest');
+Route::get('logout', [AuthController::class, 'logout'])->name('logout');
 Route::get('register', [AuthController::class, 'register'])->name('register');
 Route::post('register', [AuthController::class, 'submit_register']);
 
@@ -37,9 +37,13 @@ Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
 // Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
 //--USER:
+Route::post('/admin/user/update-status-user', [UserController::class, 'updateStatusUser']);
+Route::get('/admin/user/hapus/{id}', [UserController::class, 'hapus']);
+// Route::get('/admin/user/{id}/detail', [UserController::class, 'detail']);
 Route::resource('admin/user', UserController::class);
 
 //--MATERI:
+Route::PUT('/admin/materi/uploadfile/{id}', [MateriController::class, 'uploadFile']);
 Route::resource('admin/materi', MateriController::class);
 
 //--TUGAS:

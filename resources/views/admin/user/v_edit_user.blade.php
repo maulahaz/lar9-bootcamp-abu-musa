@@ -39,13 +39,11 @@
                 </div>
                 <h3 class="profile-username text-center">{{$dtUser->name}}</h3>
                 <p class="text-muted text-center">{{$dtUser->role_id}}</p>
-                <a href="#" class="btn btn-primary btn-block"><b>Ganti Password</b></a>
+                <a href="#" class="btn btn-primary btn-block"><b>Reset Password</b></a>
                 </div>
                 <!-- /.card-body -->
             </div>
             <!-- /.card -->
-
-            
         </div>
         <!-- /.col -->
 
@@ -54,25 +52,25 @@
             <div class="card">
               <div class="card-header p-2">
                 <ul class="nav nav-pills">
-                  <li class="nav-item"><a class="nav-link active" href="#about-me" data-toggle="tab">Tentang Saya</a></li>
+                  <li class="nav-item"><a class="nav-link active" href="#about-user" data-toggle="tab">Tentang Pengguna</a></li>
                   <li class="nav-item"><a class="nav-link" href="#settings" data-toggle="tab">Setting</a></li>
                 </ul>
               </div><!-- /.card-header -->
               <div class="card-body">
                 <div class="tab-content">
-                  <div class="active tab-pane" id="about-me">
+                  <div class="active tab-pane" id="about-user">
                     <div class="card-body">
-                      <strong><i class="fas fa-book mr-1"></i> Nama</strong>
-                      <p>{{$dtUser->name}}</p>
-                      <hr>
-                      <strong><i class="fas fa-map-marker-alt mr-1"></i> Alamat Email</strong>
-                      <p>{{$dtUser->email}}</p>
-                      <hr>
-                      <strong><i class="fas fa-pencil-alt mr-1"></i> Tanggal join</strong>
-                      <p>{{$dtUser->created_at}}</p>
-                      <hr>
-                      <strong><i class="far fa-file-alt mr-1"></i> Status</strong>
-                      <p>{{$dtUser->status}}</p>
+                        <strong><i class="fas fa-book mr-1"></i> Nama</strong>
+                        <p>{{$dtUser->name}}</p>
+                        <hr>
+                        <strong><i class="fas fa-map-marker-alt mr-1"></i> Alamat Email</strong>
+                        <p>{{$dtUser->email}}</p>
+                        <hr>
+                        <strong><i class="fas fa-pencil-alt mr-1"></i> Tanggal join</strong>
+                        <p>{{$dtUser->created_at}}</p>
+                        <hr>
+                        <strong><i class="far fa-file-alt mr-1"></i> Status</strong>
+                        <p>{{$dtUser->status}}</p>
                     </div>
                   </div>
                   <!-- /.tab-pane -->

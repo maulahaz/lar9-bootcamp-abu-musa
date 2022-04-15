@@ -29,9 +29,9 @@
 <!-- Main content -->
 <section class="content">
   <div class="container-fluid">
-  	<div class="row">
-  	  <div class="col-12">
-  	  	<div class="card card-primary card-outline">
+    <div class="row">
+      <div class="col-12">
+        <div class="card card-primary card-outline">
           <div class="card-header">
             <a href="{{ url('/admin/materi/create') }}" class="btn btn-sm btn-primary"><i class="fa fa-plus"></i>&nbsp;Add</a>
             <div class="card-tools">
@@ -45,45 +45,52 @@
             </div>
           </div>
           <!-- /.card-header -->
-  	  		<div class="card-body table-responsive p-0">
+          <div class="card-body table-responsive p-0">
             <table class="table table-hover text-nowrap">
-                <thead>
-                  <tr>
-                    <th>No.</th>
-                    <th>Photo</th>
-                    <th>Judul</th>
-                    <th>Posted</th>
-                    <th>Category</th>
-                    <th>Status</th>
-                    <th>Video</th>
-                    <th>Aksi</th>
-                  </tr>
-                </thead>
-                <tbody>
-                	<?php $no = 1; ?>
-                	@foreach($dtMateri as $row)
-                  <tr>
-                    <td>{{$no++}}</td>
-                    <td>{{$row->picture}}</td>
-                    <td>{{$row->title}}</td>
-                    <td>{{$row->posted_dt}}</td>
-                    <td>{{$row->category}}</td>
-                    <td>{{$row->status}}</td>
-                    <td>{{$row->video_url}}</td>
-                    <td>
-                      <a href="{{ url('/admin/materi/'.$row->id.'/edit') }}" class="btn btn-sm btn-warning"><i class="fa fa-edit"></i>&nbsp;Edit</a>
-                      <button type="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#modal-delete-{{$row->id}}"><i class="fa fa-trash"></i>&nbsp;Delete</button>
-                    </td>
-                    
-                  </tr>
-                  @endforeach
-                </tbody>
-              </table>
-  	      </div>
-  	    </div><!-- /.card -->
-  	
-  	  </div>
-  	</div>
+              <thead>
+                <tr>
+                  <th>No.</th>
+                  <th>Photo</th>
+                  <th>Judul</th>
+                  <th>Posted</th>
+                  <th>Category</th>
+                  <th>Status</th>
+                  <th>Video</th>
+                  <th>Aksi</th>
+                </tr>
+              </thead>
+              <tbody>
+                <?php $no = 1; ?>
+                @foreach($dtMateri as $row)
+                <tr>
+                  <td>{{$no++}}</td>
+                  <td>
+                    @if(!empty($row->picture))
+                    <img class="profile-user-img img-fluid img-circle" src="{{ url('uploads/materi/'.$row->picture) }}" alt="Materi Icon">
+                    @else
+                    <img class="profile-user-img img-fluid img-circle" src="{{ url('images/noimage.jpg') }}" alt="Materi Icon">
+                    @endif
+                  </td>
+                  <td>{{$row->title}}</td>
+                  <td>{{$row->posted_dt}}</td>
+                  <td>{{$row->category}}</td>
+                  <td>{{$row->status}}</td>
+                  <td>{{$row->video_url}}</td>
+                  <td>
+                    <!-- <a href="{{ url('/admin/materi/'.$row->id.'/edit') }}" class="btn btn-sm btn-warning"><i class="fa fa-edit"></i>&nbsp;Edit</a> -->
+                    <a href="{{ url('/admin/materi/'.$row->id) }}" class="btn btn-sm btn-info"><i class="fa fa-search"></i>&nbsp;Detail</a>
+                    <!-- <button type="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#modal-delete-{{$row->id}}"><i class="fa fa-trash"></i>&nbsp;Delete</button> -->
+                  </td>
+
+                </tr>
+                @endforeach
+              </tbody>
+            </table>
+          </div>
+        </div><!-- /.card -->
+
+      </div>
+    </div>
   </div>
 </section>
 
