@@ -1,5 +1,6 @@
 @extends('templates/adminlte/v_admin')
 @section('content')
+<?php $loggedinInfo = auth()->user(); ?>
 
 <div class="content-header">
   <div class="container-fluid">

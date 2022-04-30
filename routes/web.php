@@ -31,6 +31,8 @@ Route::post('register', [AuthController::class, 'submit_register']);
 //--ACCOUNT:
 Route::get('account/dashboard', [AccountController::class, 'dashboard']);
 Route::get('account/profile', [AccountController::class, 'profile']);
+Route::post('account/update/{id}', [AccountController::class, 'update']);
+Route::match(['GET','POST'],'account/changepass', [AccountController::class, 'changepass']);
 
 //--DASHBOARD:
 Route::get('/', [DashboardController::class, 'index'])->name('dashboard');

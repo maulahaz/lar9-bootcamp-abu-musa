@@ -1,5 +1,6 @@
 @extends('templates/adminlte/v_admin')
 @section('content')
+<?php $loggedinInfo = auth()->user(); ?>
 
 <div class="content-header">
   <div class="container-fluid">
@@ -33,7 +34,9 @@
       <div class="col-12">
         <div class="card card-primary card-outline">
           <div class="card-header">
+          @if($loggedinInfo->role_id != 1)
             <a href="{{ url('/admin/materi/create') }}" class="btn btn-sm btn-primary"><i class="fa fa-plus"></i>&nbsp;Add</a>
+          @endif  
             <div class="card-tools">
               <div class="input-group input-group-sm" style="width: 150px;">
                 <input type="text" name="table_search" class="form-control float-right" placeholder="Search">

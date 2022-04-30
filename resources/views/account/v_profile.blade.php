@@ -35,11 +35,27 @@
             <div class="card card-primary card-outline">
                 <div class="card-body box-profile">
                 <div class="text-center">
-                    <img class="profile-user-img img-fluid img-circle" src="{{ url('uploads/user/'.$dtUser->picture) }}" alt="User profile picture">
+                  @if($dtUser->picture != null)
+                  <img class="profile-user-img img-fluid img-circle mb-3" src="{{ url('uploads/user/'.$dtUser->picture) }}" alt="User profile picture">
+                  <p><a href="#" class="btn btn-sm btn-outline-warning" data-toggle="modal" data-target="#delete-picture-modal"><i class="fa fa-times"></i> Hapus & Ganti Foto</a></p>
+                  @else
+                  <div class="form-group">
+                    <img class="profile-user-img img-fluid img-circle mb-3" src="{{ url('images/noimage.jpg') }}" alt="Foto">
+                    <p>Foto tidak ada. Silahkan upload!!</p>
+                    <label><strong>Upload Foto</strong></label>
+                    <div class="custom-file">
+                      <input type="file" id="foto" name="foto" multiple class="custom-file-input form-control" accept="image/png, image/jpeg, image/jpg">
+                      <label class="custom-file-label" for="foto">Pilih Foto</label>
+                    </div>
+                  </div>
+                  @endif
+                  
                 </div>
+                <hr>
                 <h3 class="profile-username text-center">{{$dtUser->name}}</h3>
                 <p class="text-muted text-center">{{$dtUser->role_id}}</p>
-                <a href="#" class="btn btn-primary btn-block"><b>Ganti Password</b></a>
+                
+                <a href="{{url('account/changepass')}}" class="btn btn-primary btn-block"><b>Ganti Password</b></a>
                 </div>
                 <!-- /.card-body -->
             </div>
@@ -55,7 +71,7 @@
               <div class="card-header p-2">
                 <ul class="nav nav-pills">
                   <li class="nav-item"><a class="nav-link active" href="#about-me" data-toggle="tab">Tentang Saya</a></li>
-                  <li class="nav-item"><a class="nav-link" href="#settings" data-toggle="tab">Setting</a></li>
+                  <li class="nav-item"><a class="nav-link" href="#edit-data" data-toggle="tab">Rubah Data</a></li>
                 </ul>
               </div><!-- /.card-header -->
               <div class="card-body">
@@ -77,50 +93,24 @@
                   </div>
                   <!-- /.tab-pane -->
 
-                  <div class="tab-pane" id="settings">
-                    <form class="form-horizontal">
+                  <div class="tab-pane" id="edit-data">
+                    <form class="form-horizontal" action="{{url('account/update/'.$dtUser->id)}}" method="POST">
+                    @csrf
                       <div class="form-group row">
-                        <label for="inputName" class="col-sm-2 col-form-label">Name</label>
+                        <label class="col-sm-2 col-form-label">Name</label>
                         <div class="col-sm-10">
-                          <input type="email" class="form-control" id="inputName" placeholder="Name">
+                          <input type="text" class="form-control" id="name" name="name" value="{{$dtUser->name}}" placeholder="Name">
                         </div>
                       </div>
                       <div class="form-group row">
-                        <label for="inputEmail" class="col-sm-2 col-form-label">Email</label>
+                        <label class="col-sm-2 col-form-label">Email</label>
                         <div class="col-sm-10">
-                          <input type="email" class="form-control" id="inputEmail" placeholder="Email">
-                        </div>
-                      </div>
-                      <div class="form-group row">
-                        <label for="inputName2" class="col-sm-2 col-form-label">Name</label>
-                        <div class="col-sm-10">
-                          <input type="text" class="form-control" id="inputName2" placeholder="Name">
-                        </div>
-                      </div>
-                      <div class="form-group row">
-                        <label for="inputExperience" class="col-sm-2 col-form-label">Experience</label>
-                        <div class="col-sm-10">
-                          <textarea class="form-control" id="inputExperience" placeholder="Experience"></textarea>
-                        </div>
-                      </div>
-                      <div class="form-group row">
-                        <label for="inputSkills" class="col-sm-2 col-form-label">Skills</label>
-                        <div class="col-sm-10">
-                          <input type="text" class="form-control" id="inputSkills" placeholder="Skills">
+                          <input type="email" class="form-control" id="email" name="email" value="{{$dtUser->email}}" placeholder="Email">
                         </div>
                       </div>
                       <div class="form-group row">
                         <div class="offset-sm-2 col-sm-10">
-                          <div class="checkbox">
-                            <label>
-                              <input type="checkbox"> I agree to the <a href="#">terms and conditions</a>
-                            </label>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="form-group row">
-                        <div class="offset-sm-2 col-sm-10">
-                          <button type="submit" class="btn btn-danger">Submit</button>
+                          <button type="submit" class="btn btn-warning">Submit</button>
                         </div>
                       </div>
                     </form>
@@ -138,6 +128,34 @@
       </div>
   </div>
 </section>
+
+<!-- DELETE PICTURE -->
+<!-- ===================================================== -->
+<div class="modal fade" id="delete-picture-modal" style="display: none;" aria-hidden="true">
+    <div class="modal-dialog">
+      <form class="form-horizontal" action="{{url('account/deletePicture')}}" method="POST">
+      @csrf
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title"><i class="fa fa-trash"></i> Delete Picture</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p>Are you sure?</p>
+          <p>You are about to delete the picture.  This cannot be undone. Do you really want to do this?</p> 
+        </div>
+        <div class="modal-footer justify-content-between">
+          <button class="btn btn-sm btn-outline-info" data-dismiss="modal">Cancel</button>
+          <button type="submit" class="btn btn-sm btn-warning">Submit</button>
+        </div>
+      </div>
+      </form>
+      <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
 
 
 @endsection

@@ -1,5 +1,6 @@
 @extends('templates/adminlte/v_admin')
 @section('content')
+<?php $loggedinInfo = auth()->user(); ?>
 
 <div class="content-header">
   <div class="container-fluid">
@@ -18,8 +19,10 @@
           <!-- /.card-header -->
           <div class="card-body">
             <a href="{{ url('/admin/materi') }}" class="btn btn-sm btn-outline-info"><i class="fa fa-chevron-left"></i>&nbsp;List Data</a>
+            @if($loggedinInfo->role_id != 1)
             <a href="{{ url('/admin/materi/'.$dtMateri->id.'/edit') }}" class="btn btn-sm btn-warning"><i class="fa fa-edit"></i>&nbsp;Edit</a>
             <button type="button" class="btn btn-sm btn-danger float-right" data-toggle="modal" data-target="#modal-delete-{{$dtMateri->id}}"><i class="fa fa-trash"></i>&nbsp;Delete Data</button>
+            @endif
           </div>
           <!-- /.card-body -->
         </div>
@@ -81,7 +84,9 @@
             </form>
             @else
             <div class="text-center">
+              @if($loggedinInfo->role_id != 1)
               <p><button class="btn btn-sm btn-outline-danger" data-toggle="modal" data-target="#delete-picture-modal"><i class="fa fa-trash"></i> Delete Picture</button></p>
+              @endif
               <p style="width:200px; text-align: center; display: inline-block;">
                 <img src="{{ url('uploads/materi/'.$dtMateri->picture) }}" alt="picture preview" class="img-fluid">
               </p>

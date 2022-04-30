@@ -1,10 +1,12 @@
+<?php $loggedinInfo = auth()->user(); ?>
+
 <!DOCTYPE html>
 <html>
 
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Admin Page</title>
+  <title>{{ $webTitle }}</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- Font Awesome -->
@@ -64,11 +66,12 @@
       <!-- Right navbar links -->
       <ul class="navbar-nav ml-auto">
 
-        <li class="nav-item">
+        <!-- <li class="nav-item">
           <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#" role="button">
             <i class="fas fa-th-large"></i>
           </a>
-        </li>
+        </li> -->
+
       </ul>
     </nav>
     <!-- /.navbar -->
@@ -100,8 +103,7 @@
         <!-- Sidebar Menu -->
         <nav class="mt-2">
           <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-            <!-- Add icons to the links using the .nav-icon class
-               with font-awesome or any other icon font library -->
+            
             <li class="nav-header">ADMIN</li>
             <li class="nav-item has-treeview {{request()->is('admin/materi') ? 'menu-open' : 'menu-close'}}">
               <a href="#" class="nav-link">
@@ -146,12 +148,15 @@
                 </li>
               </ul>
             </li>
+            @if($loggedinInfo->role_id != 1)
             <li class="nav-item">
               <a href="{{url('admin/user')}}" class="nav-link {{request()->is('admin/user') ? 'active' : ''}}">
                 <i class="nav-icon fas fa-image"></i>
                 <p>User</p>
               </a>
             </li>
+            @endif
+
             <li class="nav-header">ACCOUNT</li>
             <li class="nav-item">
               <a href="{{url('account/profile')}}" class="nav-link {{request()->is('account/profile') ? 'active' : ''}}">

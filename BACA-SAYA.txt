@@ -44,3 +44,5 @@ Tips: PHP/HTML Formatter:
 The settings use Intelephense as the formatter for PHP files and use Prettier as the formatter for all other files.
 
 Now I use Shift + Alt + F to format the files like everybody else.
+
+Github Token: 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

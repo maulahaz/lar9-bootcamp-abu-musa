@@ -12,6 +12,7 @@ class UserController extends Controller
     {
         $this->middleware(['auth']);
         
+        $this->data['webTitle'] = 'Latihan Laravel';
         // $this->data['currentMenu'] = 'Admin';
         // $this->data['currentSubMenu'] = 'Materi';
     }
