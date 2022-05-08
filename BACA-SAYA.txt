@@ -1,4 +1,39 @@
+== 2022-05-08, @MHz-FanlessPC ==
+- To be done:
+    -Module Ujian, Benerin CRUD
+    -Delete mending di seragamin pake SweetAlert biar cepet utk CRUD Module yg lain
+    [
+        <button type="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#modal-delete-{{$row->id}}"><i class="fa fa-trash"></i>&nbsp;Delete</button>
+        <a href="javascript:void(0)" class="btn btn-sm btn-warning confirmDelete" record="user" record_id="{{$row->id}}"><i class="fa fa-edit"></i>&nbsp;Hapus</a>
+        
+        //--Delete Record:
+    $(".confirmDelete").click(function(){
+        var record = $(this).attr("record");
+        var record_id = $(this).attr("record_id");
+        Swal.fire({
+            title: "Are you sure?",
+            text: "Once deleted, you will not be able to recover this data!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonText: 'Yes, Delete it!'
+        }).then((result) => {
+            console.log(result);
+            if(result.value){
+                window.location.href = "/admin/"+record+"/hapus/"+record_id;
+            }
+        });
+    });
+    ]
+- Module Account:
+    -Update Profile, Upload and Delete Gambar
+    -Menu pake bhs Indo
+- Module Materi:
+    -Update Profile, Upload and Delete Gambar
+    -Menu pake bhs Indo
+
 == 2022-04-04, @MHz-FanlessPC ==
+* Buat File Input biar ada judulnya: 
+ <script src="{{ url('t_adminlte3') }}/plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>
 * Query di Laravel:
 - $dtPengguna = DB::table('users')
     ->whereNotIn('role_id', [88])
