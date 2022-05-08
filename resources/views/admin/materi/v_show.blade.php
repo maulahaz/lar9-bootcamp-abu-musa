@@ -70,14 +70,17 @@
           <!-- /.card-header -->
           <div class="card-body">
             @if (empty($dtMateri->picture))
-            <form name="frm_upload" action="{{ url('admin/materi/uploadfile/'.$dtMateri->id) }}" method="POST" class="form-horizontal" enctype="multipart/form-data">
+            <form name="frm_upload" action="{{ url('admin/materi/upload-picture/'.$dtMateri->id) }}" method="POST" class="form-horizontal" enctype="multipart/form-data">
               @method('PUT')
               @csrf
-              <?php echo "<p>Please choose a picture from your computer and then press 'Upload'.</p>" ?>
+              <div class="text-center"><img class="profile-user-img img-fluid img-circle mb-3" src="{{ url('images/noimage.jpg') }}" alt="Gambar"></div>
+              
+              <p class="text-center">Gambar belum ada.</p>
+              <p class="text-center">Silahkan pilih gambar kemudian tekan UPLOAD.</p>
               <div class="input-group mb-2">
                 <div class="custom-file">
                   <input type="file" name="picture" class="custom-file-input">
-                  <label class="custom-file-label" for="exampleInputFile">Choose file</label>
+                  <label class="custom-file-label" for="foto">Masukan File Gambar</label>
                 </div>
               </div>
               <button type="submit" name="Upload" class="btn btn-sm btn-info btn-block">Upload</button>
@@ -85,7 +88,7 @@
             @else
             <div class="text-center">
               @if($loggedinInfo->role_id != 1)
-              <p><button class="btn btn-sm btn-outline-danger" data-toggle="modal" data-target="#delete-picture-modal"><i class="fa fa-trash"></i> Delete Picture</button></p>
+              <p><button class="btn btn-sm btn-outline-danger" data-toggle="modal" data-target="#delete-picture-modal"><i class="fa fa-times"></i> Hapus & Ganti Gambar</button></p>
               @endif
               <p style="width:200px; text-align: center; display: inline-block;">
                 <img src="{{ url('uploads/materi/'.$dtMateri->picture) }}" alt="picture preview" class="img-fluid">
@@ -104,26 +107,28 @@
 </div>
 <!-- /.content-header -->
 
-<!-- MODAL-DELETE -->
+<!-- DELETE DATA -->
+<!-- ===================================================== -->
 <div class="modal fade" id="modal-delete-{{$dtMateri->id}}">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header bg-danger">
-        <h4 class="modal-title">DELETE DATA</h4>
+        <h4 class="modal-title">Hapus Data</h4>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-        <p>Are you sure want to delete this data ?</p>
+        <p>Apakah anda yakin ?</p>
+        <p>Anda akan menghapus data. Setelah di eksekusi, proses ini tidak dapat dibatalkan. Apakah Anda benar-benar ingin melakukan nya?</p> 
       </div>
       <div class="modal-footer justify-content-between">
-        <button type="button" class="btn btn-sm btn-default" data-dismiss="modal">Close</button>
-        <form action="{{ url('admin/materi', [$dtMateri->id]) }}" method="POST">
-          @csrf
-          @method('DELETE')
-          <button class="btn btn-sm btn-danger" type="submit"><i class="fa fa-danger"></i>&nbsp;Yes, Confirm Delete</button>
-        </form>
+      <form action="{{ url('admin/materi', [$dtMateri->id]) }}" method="POST">
+        @csrf
+        @method('DELETE')
+        <button type="submit" class="btn btn-sm btn-danger">Ya, Hapus gambar!</button>
+      </form>
+      <button type="button" class="btn btn-sm btn-default" data-dismiss="modal">Batal</button>
       </div>
     </div>
     <!-- /.modal-content -->
@@ -131,5 +136,34 @@
   <!-- /.modal-dialog -->
 </div>
 <!-- /.modal -->
+
+<!-- DELETE PICTURE -->
+<!-- ===================================================== -->
+<div class="modal fade" id="delete-picture-modal" style="display: none;" aria-hidden="true">
+    <div class="modal-dialog">
+      <form class="form-horizontal" action="{{url('admin/materi/delete-picture', [$dtMateri->id])}}" method="POST">
+      @method('DELETE')
+      @csrf
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title"><i class="fa fa-trash"></i> Hapus Gambar</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p>Apakah anda yakin ?</p>
+          <p>Anda akan menghapus gambar. Setelah di eksekusi, proses ini tidak dapat dibatalkan. Apakah Anda benar-benar ingin melakukan nya?</p> 
+        </div>
+        <div class="modal-footer justify-content-between">
+          <button type="submit" class="btn btn-sm btn-danger">Ya, Hapus gambar!</button>
+          <button class="btn btn-sm btn-default" data-dismiss="modal">Batal</button>
+        </div>
+      </div>
+      </form>
+      <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
 
 @endsection

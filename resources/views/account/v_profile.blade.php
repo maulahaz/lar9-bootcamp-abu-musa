@@ -37,17 +37,22 @@
                 <div class="text-center">
                   @if($dtUser->picture != null)
                   <img class="profile-user-img img-fluid img-circle mb-3" src="{{ url('uploads/user/'.$dtUser->picture) }}" alt="User profile picture">
-                  <p><a href="#" class="btn btn-sm btn-outline-warning" data-toggle="modal" data-target="#delete-picture-modal"><i class="fa fa-times"></i> Hapus & Ganti Foto</a></p>
+                  <p><a href="#" class="btn btn-sm btn-outline-danger" data-toggle="modal" data-target="#delete-picture-modal"><i class="fa fa-times"></i> Hapus & Ganti Gambar</a></p>
                   @else
+                  <form action="{{ url('account/upload-picture/'.$dtUser->id) }}" method="POST" enctype="multipart/form-data">
+                  @method('PUT')
+                  @csrf
                   <div class="form-group">
-                    <img class="profile-user-img img-fluid img-circle mb-3" src="{{ url('images/noimage.jpg') }}" alt="Foto">
-                    <p>Foto tidak ada. Silahkan upload!!</p>
-                    <label><strong>Upload Foto</strong></label>
+                    <img class="profile-user-img img-fluid img-circle mb-3" src="{{ url('images/noimage.jpg') }}" alt="Gambar">
+                    <p>Gambar tidak ada. Silahkan upload!!</p>
+                    <label><strong>Upload Gambar</strong></label>
                     <div class="custom-file">
                       <input type="file" id="foto" name="foto" multiple class="custom-file-input form-control" accept="image/png, image/jpeg, image/jpg">
-                      <label class="custom-file-label" for="foto">Pilih Foto</label>
+                      <label class="custom-file-label" for="foto">Pilih Gambar</label>
                     </div>
                   </div>
+                  <button type="submit" name="Upload" class="btn btn-sm btn-info btn-block">Upload</button>
+                  </form>
                   @endif
                   
                 </div>
@@ -70,8 +75,8 @@
             <div class="card">
               <div class="card-header p-2">
                 <ul class="nav nav-pills">
-                  <li class="nav-item"><a class="nav-link active" href="#about-me" data-toggle="tab">Tentang Saya</a></li>
-                  <li class="nav-item"><a class="nav-link" href="#edit-data" data-toggle="tab">Rubah Data</a></li>
+                  <li class="nav-item"><a class="nav-link active" href="#about-me" data-toggle="tab"><i class="fa fa-user"></i> Tentang Saya</a></li>
+                  <li class="nav-item"><a class="nav-link" href="#edit-data" data-toggle="tab"><i class="fa fa-edit"></i> Rubah Data</a></li>
                 </ul>
               </div><!-- /.card-header -->
               <div class="card-body">
@@ -97,9 +102,9 @@
                     <form class="form-horizontal" action="{{url('account/update/'.$dtUser->id)}}" method="POST">
                     @csrf
                       <div class="form-group row">
-                        <label class="col-sm-2 col-form-label">Name</label>
+                        <label class="col-sm-2 col-form-label">Nama</label>
                         <div class="col-sm-10">
-                          <input type="text" class="form-control" id="name" name="name" value="{{$dtUser->name}}" placeholder="Name">
+                          <input type="text" class="form-control" id="name" name="name" value="{{$dtUser->name}}" placeholder="Nama">
                         </div>
                       </div>
                       <div class="form-group row">
@@ -110,7 +115,7 @@
                       </div>
                       <div class="form-group row">
                         <div class="offset-sm-2 col-sm-10">
-                          <button type="submit" class="btn btn-warning">Submit</button>
+                          <button type="submit" class="btn btn-warning">Simpan</button>
                         </div>
                       </div>
                     </form>
@@ -133,25 +138,26 @@
 <!-- ===================================================== -->
 <div class="modal fade" id="delete-picture-modal" style="display: none;" aria-hidden="true">
     <div class="modal-dialog">
-      <form class="form-horizontal" action="{{url('account/deletePicture')}}" method="POST">
-      @csrf
       <div class="modal-content">
         <div class="modal-header">
-          <h4 class="modal-title"><i class="fa fa-trash"></i> Delete Picture</h4>
+          <h4 class="modal-title"><i class="fa fa-trash"></i> Hapus Gambar</h4>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">×</span>
           </button>
         </div>
         <div class="modal-body">
-          <p>Are you sure?</p>
-          <p>You are about to delete the picture.  This cannot be undone. Do you really want to do this?</p> 
+          <p>Apakah anda yakin ?</p>
+          <p>Anda akan menghapus gambar. Setelah di eksekusi, proses ini tidak dapat dibatalkan. Apakah Anda benar-benar ingin melakukan nya?</p> 
         </div>
         <div class="modal-footer justify-content-between">
-          <button class="btn btn-sm btn-outline-info" data-dismiss="modal">Cancel</button>
-          <button type="submit" class="btn btn-sm btn-warning">Submit</button>
+          <form action="{{ url('account/delete-picture', [$dtUser->id]) }}" method="POST">
+            @method('DELETE')
+            @csrf
+            <button type="submit" class="btn btn-sm btn-danger">Ya, Hapus gambar!</button>
+          </form>
+          <button class="btn btn-sm btn-default" data-dismiss="modal">Batal</button>
         </div>
       </div>
-      </form>
       <!-- /.modal-content -->
     </div>
     <!-- /.modal-dialog -->

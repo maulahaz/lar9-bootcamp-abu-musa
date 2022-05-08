@@ -32,6 +32,8 @@ Route::post('register', [AuthController::class, 'submit_register']);
 Route::get('account/dashboard', [AccountController::class, 'dashboard']);
 Route::get('account/profile', [AccountController::class, 'profile']);
 Route::post('account/update/{id}', [AccountController::class, 'update']);
+Route::put('account/upload-picture/{id}', [AccountController::class, 'uploadFile']);
+Route::delete('account/delete-picture/{id}', [AccountController::class, 'removeFile']);
 Route::match(['GET','POST'],'account/changepass', [AccountController::class, 'changepass']);
 
 //--DASHBOARD:
@@ -45,7 +47,9 @@ Route::get('/admin/user/hapus/{id}', [UserController::class, 'hapus']);
 Route::resource('admin/user', UserController::class);
 
 //--MATERI:
-Route::PUT('/admin/materi/uploadfile/{id}', [MateriController::class, 'uploadFile']);
+// Route::put('/admin/materi/uploadfile/{id}', [MateriController::class, 'uploadFile']);
+Route::put('/admin/materi/upload-picture/{id}', [MateriController::class, 'uploadFile']);
+Route::delete('/admin/materi/delete-picture/{id}', [MateriController::class, 'removeFile']);
 Route::resource('admin/materi', MateriController::class);
 
 //--TUGAS:
