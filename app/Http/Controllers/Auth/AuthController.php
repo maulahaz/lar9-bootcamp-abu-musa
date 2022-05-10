@@ -13,7 +13,7 @@ class AuthController extends Controller
     public function __construct()
     {
         // $this->middleware(['guest']);
-        $this->data['webTitle'] = 'Latihan Laravel';
+        $this->data['webTitle'] = 'Web Bootcamp :: Latihan Laravel';
         $this->data['pageTitle'] = 'App Login';
     }
 

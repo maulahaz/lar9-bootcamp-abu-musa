@@ -68,7 +68,7 @@
                   
               </div>
               <div class="form-group row">
-                <label class="col-sm-2 col-form-label">Waktu Deadline</label>
+                <label class="col-sm-2 col-form-label">Batas Waktu</label>
                 <div class="col-sm-2">
                   <div class="input-group date" id="deadline_date" data-target-input="nearest">
                       <input type="text" class="form-control datetimepicker-input" data-target="#deadline_date" name="deadline_at" value="{{ !empty($dtTugas) ? $dtTugas->deadline_at : old('deadline_at') }}">
@@ -94,8 +94,8 @@
             </div>
             <!-- /.card-body -->
             <div class="card-footer">
-              <button type="submit" class="btn btn-info">Save</button>
-              <a href="{{ url('admin/tugas') }}" class="btn btn-default float-right">Cancel</a>
+              <button type="submit" class="btn btn-sm btn-info"><i class="fa fa-save"></i>&nbsp;Simpan</button>
+              <a href="{{ url('admin/tugas') }}" class="btn btn-sm btn-default"><i class="fa fa-times"></i>&nbsp;Batal</a>
             </div>
             <!-- /.card-footer -->
           </form>

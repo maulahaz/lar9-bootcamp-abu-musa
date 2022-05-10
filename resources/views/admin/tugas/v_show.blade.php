@@ -18,10 +18,10 @@
           </div>
           <!-- /.card-header -->
           <div class="card-body">
-            <a href="{{ url('/admin/materi') }}" class="btn btn-sm btn-outline-info"><i class="fa fa-chevron-left"></i>&nbsp;List Data</a>
+            <a href="{{ url('/admin/tugas') }}" class="btn btn-sm btn-outline-info"><i class="fa fa-chevron-left"></i>&nbsp;List Data</a>
             @if($loggedinInfo->role_id != 1)
-            <a href="{{ url('/admin/materi/'.$dtMateri->id.'/edit') }}" class="btn btn-sm btn-warning"><i class="fa fa-edit"></i>&nbsp;Edit Data</a>
-            <button type="button" class="btn btn-sm btn-danger float-right" data-toggle="modal" data-target="#modal-delete-{{$dtMateri->id}}"><i class="fa fa-trash"></i>&nbsp;Hapus Data</button>
+            <a href="{{ url('/admin/tugas/'.$dtTugas->id.'/edit') }}" class="btn btn-sm btn-warning"><i class="fa fa-edit"></i>&nbsp;Edit Data</a>
+            <button type="button" class="btn btn-sm btn-danger float-right" data-toggle="modal" data-target="#modal-delete-{{$dtTugas->id}}"><i class="fa fa-trash"></i>&nbsp;Hapus Data</button>
             @endif
           </div>
           <!-- /.card-body -->
@@ -39,20 +39,26 @@
           <div class="card-body">
             <div class="record-details">
               <dl class="row">
-                <dt class="col-sm-3">Judul Materi</dt>
-                <dd class="col-sm-9">: {{$dtMateri->title }}</dd>
+                <dt class="col-sm-3">Judul Tugas</dt>
+                <dd class="col-sm-9">: {{$dtTugas->title }}</dd>
+                <dt class="col-sm-3">Tanggal Mulai</dt>
+                <dd class="col-sm-9">: {{$dtTugas->start_at }}</dd>
+                <dt class="col-sm-3">Batas Waktu</dt>
+                <dd class="col-sm-9">: {{$dtTugas->deadline_at }}</dd>
                 <dt class="col-sm-3">Kategori</dt>
-                <dd class="col-sm-9">: {{$dtMateri->category }}</dd>
-                <dt class="col-sm-3">Link Video</dt>
-                <dd class="col-sm-9">: {{$dtMateri->video_url }}</dd>
-                <dt class="col-sm-3">Di buat oleh</dt>
-                <dd class="col-sm-9">: {{$dtMateri->author }}</dd>
+                <dd class="col-sm-9">: {{$dtTugas->category_id }}</dd>
                 <dt class="col-sm-3">Catatan</dt>
-                <dd class="col-sm-9">: {{$dtMateri->notes }}</dd>
+                <dd class="col-sm-9">: {{$dtTugas->notes }}</dd>
+                @if($loggedinInfo->role_id != 1)
+                <dt class="col-sm-3">Dibuat Oleh</dt>
+                <dd class="col-sm-9">: {{$dtTugas->created_by}}</dd>
                 <dt class="col-sm-3">Tanggal Dibuat</dt>
-                <dd class="col-sm-9">: {{$dtMateri->created_at}}</dd>
+                <dd class="col-sm-9">: {{$dtTugas->created_at}}</dd>
+                <dt class="col-sm-3">Diupdate Oleh</dt>
+                <dd class="col-sm-9">: {{$dtTugas->updated_by}}</dd>
                 <dt class="col-sm-3">Terakhir Update</dt>
-                <dd class="col-sm-9">: {{$dtMateri->updated_at}}</dd>
+                <dd class="col-sm-9">: {{$dtTugas->updated_at}}</dd>
+                @endif
               </dl>
             </div>
           </div>
@@ -61,7 +67,7 @@
         <!-- /.card -->
       </div>
 
-      <div class="col-md-3 col-sm-5">
+      <div class="col-md-3 col-sm-5" style="display: none;">
         <!-- CARD GAMBAR -->
         <div class="card">
           <div class="card-header">
@@ -69,8 +75,8 @@
           </div>
           <!-- /.card-header -->
           <div class="card-body">
-            @if (empty($dtMateri->picture))
-            <form name="frm_upload" action="{{ url('admin/materi/upload-picture/'.$dtMateri->id) }}" method="POST" class="form-horizontal" enctype="multipart/form-data">
+            @if (empty($dtTugas->picture))
+            <form name="frm_upload" action="{{ url('admin/tugas/upload-picture/'.$dtTugas->id) }}" method="POST" class="form-horizontal" enctype="multipart/form-data">
               @method('PUT')
               @csrf
               <div class="text-center"><img class="profile-user-img img-fluid img-circle mb-3" src="{{ url('images/noimage.jpg') }}" alt="Gambar"></div>
@@ -91,7 +97,7 @@
               <p><button class="btn btn-sm btn-outline-danger" data-toggle="modal" data-target="#delete-picture-modal"><i class="fa fa-times"></i> Hapus & Ganti Gambar</button></p>
               @endif
               <p style="width:200px; text-align: center; display: inline-block;">
-                <img src="{{ url('uploads/materi/'.$dtMateri->picture) }}" alt="picture preview" class="img-fluid">
+                <img src="{{ url('uploads/tugas/'.$dtTugas->picture) }}" alt="picture preview" class="img-fluid">
               </p>
             </div>
             @endif
@@ -109,7 +115,7 @@
 
 <!-- DELETE DATA -->
 <!-- ===================================================== -->
-<div class="modal fade" id="modal-delete-{{$dtMateri->id}}">
+<div class="modal fade" id="modal-delete-{{$dtTugas->id}}">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header bg-danger">
@@ -123,7 +129,7 @@
         <p>Anda akan menghapus data. Setelah di eksekusi, proses ini tidak dapat dibatalkan. Apakah Anda benar-benar ingin melakukan nya?</p> 
       </div>
       <div class="modal-footer justify-content-between">
-      <form action="{{ url('admin/materi', [$dtMateri->id]) }}" method="POST">
+      <form action="{{ url('admin/tugas', [$dtTugas->id]) }}" method="POST">
         @csrf
         @method('DELETE')
         <button type="submit" class="btn btn-sm btn-danger"><i class="fa fa-check"></i>&nbsp;Ya, Hapus data!</button>
@@ -141,7 +147,7 @@
 <!-- ===================================================== -->
 <div class="modal fade" id="delete-picture-modal" style="display: none;" aria-hidden="true">
     <div class="modal-dialog">
-      <form class="form-horizontal" action="{{url('admin/materi/delete-picture', [$dtMateri->id])}}" method="POST">
+      <form class="form-horizontal" action="{{url('admin/tugas/delete-picture', [$dtTugas->id])}}" method="POST">
       @method('DELETE')
       @csrf
       <div class="modal-content">

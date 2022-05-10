@@ -10,7 +10,7 @@
 
       <div class="col-sm-6">
         <ol class="breadcrumb float-sm-right">
-          <li class="breadcrumb-item"><a href="{{url('admin/user')}}">Home</a></li>
+          <li class="breadcrumb-item"><a href="{{url('admin/user')}}">Beranda</a></li>
           <li class="breadcrumb-item active">{{ $pageTitle }}</li>
         </ol>
       </div><!-- /.col -->
@@ -39,7 +39,7 @@
                 </div>
                 <h3 class="profile-username text-center">{{$dtUser->name}}</h3>
                 <p class="text-muted text-center">{{$dtUser->role_id}}</p>
-                <a href="#" class="btn btn-primary btn-block"><b>Reset Password</b></a>
+                <a href="#" class="btn btn-primary btn-block"><b><i class="fa fa-undo"></i>&nbsp;Reset Password</b></a>
                 </div>
                 <!-- /.card-body -->
             </div>
@@ -52,8 +52,8 @@
             <div class="card">
               <div class="card-header p-2">
                 <ul class="nav nav-pills">
-                  <li class="nav-item"><a class="nav-link active" href="#about-user" data-toggle="tab">Tentang Pengguna</a></li>
-                  <li class="nav-item"><a class="nav-link" href="#settings" data-toggle="tab">Setting</a></li>
+                  <li class="nav-item"><a class="nav-link active" href="#about-user" data-toggle="tab"><i class="fa fa-user"></i> Tentang Pengguna</a></li>
+                  <li class="nav-item"><a class="nav-link" href="#settings" data-toggle="tab"><i class="fa fa-cog"></i> Setting</a></li>
                 </ul>
               </div><!-- /.card-header -->
               <div class="card-body">
@@ -78,47 +78,20 @@
                   <div class="tab-pane" id="settings">
                     <form class="form-horizontal">
                       <div class="form-group row">
-                        <label for="inputName" class="col-sm-2 col-form-label">Name</label>
+                        <label class="col-sm-2 col-form-label">Status</label>
                         <div class="col-sm-10">
-                          <input type="email" class="form-control" id="inputName" placeholder="Name">
+                          <input type="text" class="form-control" id="status" placeholder="Status">
                         </div>
                       </div>
                       <div class="form-group row">
-                        <label for="inputEmail" class="col-sm-2 col-form-label">Email</label>
+                        <label class="col-sm-2 col-form-label">Jabatan</label>
                         <div class="col-sm-10">
-                          <input type="email" class="form-control" id="inputEmail" placeholder="Email">
-                        </div>
-                      </div>
-                      <div class="form-group row">
-                        <label for="inputName2" class="col-sm-2 col-form-label">Name</label>
-                        <div class="col-sm-10">
-                          <input type="text" class="form-control" id="inputName2" placeholder="Name">
-                        </div>
-                      </div>
-                      <div class="form-group row">
-                        <label for="inputExperience" class="col-sm-2 col-form-label">Experience</label>
-                        <div class="col-sm-10">
-                          <textarea class="form-control" id="inputExperience" placeholder="Experience"></textarea>
-                        </div>
-                      </div>
-                      <div class="form-group row">
-                        <label for="inputSkills" class="col-sm-2 col-form-label">Skills</label>
-                        <div class="col-sm-10">
-                          <input type="text" class="form-control" id="inputSkills" placeholder="Skills">
+                          <input type="text" class="form-control" id="jabatan" placeholder="Jabatan">
                         </div>
                       </div>
                       <div class="form-group row">
                         <div class="offset-sm-2 col-sm-10">
-                          <div class="checkbox">
-                            <label>
-                              <input type="checkbox"> I agree to the <a href="#">terms and conditions</a>
-                            </label>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="form-group row">
-                        <div class="offset-sm-2 col-sm-10">
-                          <button type="submit" class="btn btn-danger">Submit</button>
+                          <button type="submit" class="btn btn-sm btn-warning"><i class="fa fa-save"></i>&nbsp;Simpan</button>
                         </div>
                       </div>
                     </form>

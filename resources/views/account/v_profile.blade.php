@@ -10,7 +10,7 @@
 
       <div class="col-sm-6">
         <ol class="breadcrumb float-sm-right">
-          <li class="breadcrumb-item"><a href="{{url('admin/user')}}">Home</a></li>
+          <li class="breadcrumb-item"><a href="{{url('admin/user')}}">Beranda</a></li>
           <li class="breadcrumb-item active">{{ $pageTitle }}</li>
         </ol>
       </div><!-- /.col -->
@@ -60,7 +60,7 @@
                 <h3 class="profile-username text-center">{{$dtUser->name}}</h3>
                 <p class="text-muted text-center">{{$dtUser->role_id}}</p>
                 
-                <a href="{{url('account/changepass')}}" class="btn btn-primary btn-block"><b>Ganti Password</b></a>
+                <a href="{{url('account/changepass')}}" class="btn btn-primary btn-block"><b><i class="fa fa-key"></i>&nbsp;Ganti Password</b></a>
                 </div>
                 <!-- /.card-body -->
             </div>
@@ -115,7 +115,7 @@
                       </div>
                       <div class="form-group row">
                         <div class="offset-sm-2 col-sm-10">
-                          <button type="submit" class="btn btn-warning">Simpan</button>
+                          <button type="submit" class="btn btn-sm btn-warning"><i class="fa fa-save"></i>&nbsp;Simpan</button>
                         </div>
                       </div>
                     </form>

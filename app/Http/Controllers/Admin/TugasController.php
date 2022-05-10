@@ -6,8 +6,6 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Tugas;
 use Auth;
-use Str;
-use Session;
 
 class TugasController extends Controller
 {
@@ -15,7 +13,7 @@ class TugasController extends Controller
     {
         $this->middleware(['auth']);
         
-        $this->data['webTitle'] = 'Latihan Laravel';
+        $this->data['webTitle'] = 'Web Bootcamp :: Latihan Laravel';
         // $this->data['currentMenu'] = 'Admin';
         // $this->data['currentSubMenu'] = 'Materi';
     }
@@ -23,7 +21,7 @@ class TugasController extends Controller
     public function index()
     {
         // die('test');
-        $this->data['pageTitle'] = 'List Tugas';
+        $this->data['pageTitle'] = 'List Data Tugas';
         $this->data['dtTugas'] = Tugas::all();
         // dd($this->data);
         return view('admin.tugas.v_index', $this->data);
@@ -33,7 +31,7 @@ class TugasController extends Controller
     {
         $dtTugas = null;
         $this->data['dtTugas'] = $dtTugas;
-        $this->data['pageTitle'] = 'Tambah Tugas';
+        $this->data['pageTitle'] = 'Tambah Data Tugas';
 
         return view('admin.tugas.v_form', $this->data);
     }
@@ -42,7 +40,7 @@ class TugasController extends Controller
     {
         $this->_validateData($request);
 
-        $post = Tugas::create([
+        $posted = Tugas::create([
             'title' => $request->title,
             // 'start_at' => date('Y-m-d H:i:s'),
             // 'deadline_at' => date('Y-m-d H:i:s'),
@@ -53,12 +51,22 @@ class TugasController extends Controller
             'created_at' => date('Y-m-d H:i:s'),
             'created_by' => Auth::user()->username,
         ]);
-        return redirect('admin/tugas')->with('success', 'Well done, New data created!');
+        if ($posted) {
+            return redirect('admin/tugas')->with('success', 'Data baru berhasil ditambah.');
+        }else{
+            return redirect()->back()->with('error', 'Error pada saat tambah data. Silahkan hubungi Administrator.');
+        }
     }
 
     public function show($id)
     {
-        //
+        $dtTugas = Tugas::findOrFail($id);
+        // dd($dtTugas);
+        $this->data['dtTugas'] = $dtTugas;
+        $this->data['updateID'] = $id;
+        $this->data['pageTitle'] = 'Detail Data Tugas';
+        // dd($this->data);
+        return view('admin.tugas.v_show', $this->data);
     }
 
     public function edit($id)
@@ -67,7 +75,7 @@ class TugasController extends Controller
         // dd($dtTugas);
         $this->data['dtTugas'] = $dtTugas;
         $this->data['updateID'] = $id;
-        $this->data['pageTitle'] = 'Update Tugas';
+        $this->data['pageTitle'] = 'Update Data Tugas';
         return view('admin.tugas.v_form', $this->data);
     }
     
@@ -86,9 +94,10 @@ class TugasController extends Controller
 
         $dtTugas = Tugas::findOrFail($id);
         if ($dtTugas->update($postedData)) {
-            Session::flash('success', 'Well done, Data has been updated.');
+            return redirect('admin/tugas')->with('success', 'Data berhasil diupdate.');
+        }else{
+            return redirect()->back()->with('error', 'Error pada saat update data. Silahkan hubungi Administrator.');
         }
-        return redirect('admin/tugas');
     }
 
     function _validateData($request)
@@ -103,12 +112,12 @@ class TugasController extends Controller
 
     public function destroy($id)
     {
+        // dd('destroy');
         $dtTugas = Tugas::findOrFail($id);
-        // dd($dtTugas);
         if ($dtTugas->delete()) {
-            Session::flash('success', 'Data has been deleted');
+            return redirect('admin/tugas')->with('success', 'Data berhasil dihapus.');
+        }else{
+            return redirect()->back()->with('error', 'Error pada saat hapus data. Silahkan hubungi Administrator.');
         }
-
-        return redirect('admin/tugas');
     }
 }

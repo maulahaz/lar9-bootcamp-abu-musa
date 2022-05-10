@@ -10,7 +10,6 @@ use App\Models\MateriModel;
 // use Illuminate\Support\Str;
 use Auth;
 use Str;
-use Session;
 
 class MateriController extends Controller
 {
@@ -18,7 +17,7 @@ class MateriController extends Controller
     {
         $this->middleware(['auth']);
         
-        $this->data['webTitle'] = 'Latihan Laravel';
+        $this->data['webTitle'] = 'Web Bootcamp :: Latihan Laravel';
         // $this->data['currentMenu'] = 'Admin';
         // $this->data['currentSubMenu'] = 'Materi';
     }
@@ -26,7 +25,7 @@ class MateriController extends Controller
     public function index()
     {
         // die('test');
-        $this->data['pageTitle'] = 'List Materi';
+        $this->data['pageTitle'] = 'List Data Materi Pembelajaran';
         $this->data['dtMateri'] = MateriModel::all();
         // dd($this->data);
         return view('admin.materi.v_index', $this->data);
@@ -36,7 +35,7 @@ class MateriController extends Controller
     {
         $dtMateri = null;
         $this->data['dtMateri'] = $dtMateri;
-        $this->data['pageTitle'] = 'Tambah Materi';
+        $this->data['pageTitle'] = 'Tambah Data Materi Pembelajaran';
 
         return view('admin.materi.v_form', $this->data);
     }
@@ -45,7 +44,7 @@ class MateriController extends Controller
     {
         $this->_validateData($request);
 
-        $post = MateriModel::create([
+        $posted = MateriModel::create([
             'title' => $request->title,
             'posted_dt' => date('Y-m-d'),
             'category' => 'umum',
@@ -58,8 +57,11 @@ class MateriController extends Controller
             'created_at' => date('Y-m-d H:i:s'),
             'created_by' => Auth::user()->username,
         ]);
-        // return redirect()->back()->with('success', 'Well done, New data created!');
-        return redirect('admin/materi')->with('success', 'Well done, New data created!');
+        if ($posted) {
+            return redirect('admin/materi')->with('success', 'Data baru berhasil ditambah.');
+        }else{
+            return redirect()->back()->with('error', 'Error pada saat tambah data. Silahkan hubungi Administrator.');
+        }
     }
 
     public function show($id)
@@ -68,7 +70,7 @@ class MateriController extends Controller
         // dd($dtMateri);
         $this->data['dtMateri'] = $dtMateri;
         $this->data['updateID'] = $id;
-        $this->data['pageTitle'] = 'Detail Materi';
+        $this->data['pageTitle'] = 'Detail Data Materi Pembelajaran';
         // dd($this->data);
         return view('admin.materi.v_show', $this->data);
     }
@@ -79,7 +81,7 @@ class MateriController extends Controller
         // dd($dtMateri);
         $this->data['dtMateri'] = $dtMateri;
         $this->data['updateID'] = $id;
-        $this->data['pageTitle'] = 'Update Materi';
+        $this->data['pageTitle'] = 'Update Data Materi Pembelajaran';
         return view('admin.materi.v_form', $this->data);
     }
     
@@ -102,9 +104,10 @@ class MateriController extends Controller
 
         $dtMateri = MateriModel::findOrFail($id);
         if ($dtMateri->update($postedData)) {
-            Session::flash('success', 'Well done, Data has been updated.');
+            return redirect('admin/materi')->with('success', 'Data berhasil diupdate.');
+        }else{
+            return redirect()->back()->with('error', 'Error pada saat update data. Silahkan hubungi Administrator.');
         }
-        return redirect('admin/materi');
     }
 
     function _validateData($request)
@@ -118,14 +121,14 @@ class MateriController extends Controller
 
     public function destroy($id)
     {
-        die('destroy');
+        // die('destroy');
         $dtMateri = MateriModel::findOrFail($id);
         // dd($dtMateri);
         if ($dtMateri->delete()) {
-            Session::flash('success', 'Data has been deleted');
+            return redirect('admin/materi')->with('success', 'Data berhasil dihapus.');
+        }else{
+            return redirect()->back()->with('error', 'Error pada saat hapus data. Silahkan hubungi Administrator.');
         }
-
-        return redirect('admin/materi');
     }
 
     public function uploadFile(Request $request, $id)

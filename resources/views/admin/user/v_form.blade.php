@@ -9,7 +9,7 @@
       </div><!-- /.col -->
       <div class="col-sm-6">
         <ol class="breadcrumb float-sm-right">
-          <li class="breadcrumb-item"><a href="{{url('admin')}}">Home</a></li>
+          <li class="breadcrumb-item"><a href="{{url('admin')}}">Beranda</a></li>
           <li class="breadcrumb-item active">--</li>
         </ol>
       </div><!-- /.col -->
@@ -57,7 +57,7 @@
               </div>
 
               <div class="form-group row">
-                <label class="col-sm-2 col-form-label">Role/Jabatan <?=  $dtUser->role_id ?></label>
+                <label class="col-sm-2 col-form-label">Role/Jabatan</label>
                 <div class="col-sm-3">
                     <select name="role_id" id="role_id" class="form-control" required>
                         <option value="">--Pilih--</option>
@@ -74,8 +74,8 @@
             </div>
             <!-- /.card-body -->
             <div class="card-footer">
-              <button type="submit" class="btn btn-info">Save</button>
-              <a href="{{ url('admin/user') }}" class="btn btn-default float-right">Cancel</a>
+              <button type="submit" class="btn btn-sm btn-info"><i class="fa fa-save"></i>&nbsp;Simpan</button>
+              <a href="{{ url('admin/user') }}" class="btn btn-sm btn-default"><i class="fa fa-times"></i>&nbsp;Batal</a>
             </div>
             <!-- /.card-footer -->
           </form>

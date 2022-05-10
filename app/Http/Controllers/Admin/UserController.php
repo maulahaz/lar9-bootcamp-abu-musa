@@ -12,14 +12,14 @@ class UserController extends Controller
     {
         $this->middleware(['auth']);
         
-        $this->data['webTitle'] = 'Latihan Laravel';
+        $this->data['webTitle'] = 'Web Bootcamp :: Latihan Laravel';
         // $this->data['currentMenu'] = 'Admin';
         // $this->data['currentSubMenu'] = 'Materi';
     }
 
     public function index()
     {
-        $this->data['pageTitle'] = 'List Pengguna';
+        $this->data['pageTitle'] = 'List Data Pengguna';
         // $this->data['dtUser'] = User::all();
         //--Utk Data Webmaster jangan dimasukan:
         $this->data['dtUser'] = User::whereNotIn('role_id', [88])->get();
@@ -31,7 +31,7 @@ class UserController extends Controller
     {
         $dtUser = null;
         $this->data['dtUser'] = $dtUser;
-        $this->data['pageTitle'] = 'Tambah Pengguna';
+        $this->data['pageTitle'] = 'Tambah Data Pengguna';
 
         return view('admin.user.v_form', $this->data);
     }
@@ -40,10 +40,8 @@ class UserController extends Controller
     {
         $this->_validateData($request);
 
-        $post = User::create([
+        $posted = User::create([
             'title' => $request->title,
-            // 'start_at' => date('Y-m-d H:i:s'),
-            // 'deadline_at' => date('Y-m-d H:i:s'),
             'start_at' => date("Y-m-d H:i:s", strtotime($request->start_at)),
             'deadline_at' => date("Y-m-d H:i:s", strtotime($request->deadline_at)),
             'category_id' => 1,
@@ -51,7 +49,11 @@ class UserController extends Controller
             'created_at' => date('Y-m-d H:i:s'),
             'created_by' => Auth::user()->username,
         ]);
-        return redirect('admin/tugas')->with('success', 'Well done, New data created!');
+        if ($posted) {
+            return redirect('admin/user')->with('success', 'Data baru berhasil ditambah.');
+        }else{
+            return redirect()->back()->with('error', 'Error pada saat tambah data. Silahkan hubungi Administrator.');
+        }
     }
 
     public function updateStatusUser(Request $request)
@@ -76,8 +78,9 @@ class UserController extends Controller
         // dd($dtUser);
         $this->data['dtUser'] = $dtUser;
         $this->data['updateID'] = $id;
-        $this->data['pageTitle'] = 'Update Pengguna : "'.$dtUser->username.'"';
-        return view('admin.user.v_edit_user', $this->data);
+        $this->data['pageTitle'] = 'Detail Data Pengguna : "'.$dtUser->username.'"';
+        return view('admin.user.v_show', $this->data);
+        // return view('admin.user.v_edit_user', $this->data);
     }
 
     public function edit($id)
@@ -86,7 +89,7 @@ class UserController extends Controller
         // dd($dtUser);
         $this->data['dtUser'] = $dtUser;
         $this->data['updateID'] = $id;
-        $this->data['pageTitle'] = 'Update Pengguna : "'.$dtUser->username.'"';
+        $this->data['pageTitle'] = 'Update Data Pengguna : "'.$dtUser->username.'"';
         return view('admin.user.v_form', $this->data);
     }
     

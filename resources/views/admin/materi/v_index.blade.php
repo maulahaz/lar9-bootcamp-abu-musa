@@ -11,7 +11,7 @@
 
       <div class="col-sm-6">
         <ol class="breadcrumb float-sm-right">
-          <li class="breadcrumb-item"><a href="{{url('admin/materi')}}">Home</a></li>
+          <li class="breadcrumb-item"><a href="{{url('admin/materi')}}">Beranda</a></li>
           <li class="breadcrumb-item active">{{ $pageTitle }}</li>
         </ol>
       </div><!-- /.col -->
@@ -35,11 +35,11 @@
         <div class="card card-primary card-outline">
           <div class="card-header">
           @if($loggedinInfo->role_id != 1)
-            <a href="{{ url('/admin/materi/create') }}" class="btn btn-sm btn-primary"><i class="fa fa-plus"></i>&nbsp;Add</a>
+            <a href="{{ url('/admin/materi/create') }}" class="btn btn-sm btn-primary"><i class="fa fa-plus"></i>&nbsp;Tambah Data</a>
           @endif  
             <div class="card-tools">
               <div class="input-group input-group-sm" style="width: 150px;">
-                <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
+                <input type="text" name="table_search" class="form-control float-right" placeholder="Cari..">
 
                 <div class="input-group-append">
                   <button type="submit" class="btn btn-default"><i class="fas fa-search"></i></button>
@@ -53,10 +53,10 @@
               <thead>
                 <tr>
                   <th>No.</th>
-                  <th>Photo</th>
-                  <th>Judul</th>
-                  <th>Posted</th>
-                  <th>Category</th>
+                  <th>Gambar</th>
+                  <th>Judul Materi</th>
+                  <th>Tgl Dibuat</th>
+                  <th>Kategori</th>
                   <th>Status</th>
                   <th>Video</th>
                   <th>Aksi</th>
@@ -80,8 +80,8 @@
                   <td>{{$row->status}}</td>
                   <td>{{$row->video_url}}</td>
                   <td>
-                    <!-- <a href="{{ url('/admin/materi/'.$row->id.'/edit') }}" class="btn btn-sm btn-warning"><i class="fa fa-edit"></i>&nbsp;Edit</a> -->
                     <a href="{{ url('/admin/materi/'.$row->id) }}" class="btn btn-sm btn-info"><i class="fa fa-search"></i>&nbsp;Detail</a>
+                    <!-- <a href="{{ url('/admin/materi/'.$row->id.'/edit') }}" class="btn btn-sm btn-warning"><i class="fa fa-edit"></i>&nbsp;Edit</a> -->
                     <!-- <button type="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#modal-delete-{{$row->id}}"><i class="fa fa-trash"></i>&nbsp;Delete</button> -->
                   </td>
 

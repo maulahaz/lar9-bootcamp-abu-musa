@@ -75,8 +75,8 @@
             </div>
             <!-- /.card-body -->
             <div class="card-footer">
-              <button type="submit" class="btn btn-info">Save</button>
-              <a href="{{ url('admin/materi') }}" class="btn btn-default">Cancel</a>
+              <button type="submit" class="btn btn-sm btn-info"><i class="fa fa-save"></i>&nbsp;Simpan</button>
+              <a href="{{ url('admin/materi') }}" class="btn btn-sm btn-default"><i class="fa fa-times"></i>&nbsp;Batal</a>
             </div>
             <!-- /.card-footer -->
           </form>
