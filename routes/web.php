@@ -10,6 +10,7 @@ use App\Http\Controllers\Auth\AuthController;
 //--PUBLIC:
 use App\Http\Controllers\AccountController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\HomeController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -20,6 +21,16 @@ use App\Http\Controllers\DashboardController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+//====================HOME PAGE==================================================
+//--Homepage:
+Route::get('/', [HomeController::class, 'index']);
+
+//--Member login:
+// Route::get('auth/signin', 'Auth\LoginController@index');
+// Route::get('auth/signout', 'Auth\LogoutController@store');
+
+//====================ADMIN PAGE==================================================
 
 //--AUTH:
 Route::get('login', [AuthController::class, 'login'])->name('login')->middleware('guest');
@@ -37,7 +48,7 @@ Route::delete('account/delete-picture/{id}', [AccountController::class, 'removeF
 Route::match(['GET','POST'],'account/changepass', [AccountController::class, 'changepass']);
 
 //--DASHBOARD:
-Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
+// Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 // Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
 //--USER:
