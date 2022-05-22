@@ -1,3 +1,4 @@
+//-- Sumber dari Stack Developer:
 $(document).ready(function(){
     $(".updateStatusUser").click(function(){
         var status = $(this).text();
