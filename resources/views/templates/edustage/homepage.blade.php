@@ -487,9 +487,9 @@
         <div class="row justify-content-center">
           <div class="col-lg-5">
             <div class="main_title">
-              <h2 class="mb-3">Client say about me</h2>
+              <h2 class="mb-3">Apa kata mereka</h2>
               <p>
-                Replenish man have thing gathering lights yielding shall you
+                Testimoni mereka merupakan motivasi dan semangat kami
               </p>
             </div>
           </div>
