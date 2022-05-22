@@ -144,4 +144,9 @@ class UserController extends Controller
 
         // return redirect('admin/tugas');
     }
+
+    function resetPassword($id)
+    {
+        die('resetPassword '.$id);
+    }
 }

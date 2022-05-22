@@ -45,6 +45,7 @@ Route::post('/admin/user/update-status-user', [UserController::class, 'updateSta
 Route::get('/admin/user/hapus/{id}', [UserController::class, 'hapus']);
 // Route::get('/admin/user/{id}/detail', [UserController::class, 'detail']);
 Route::resource('admin/user', UserController::class);
+Route::get('/admin/user/reset-password/{id}', [UserController::class, 'resetPassword']);
 
 //--MATERI:
 // Route::put('/admin/materi/uploadfile/{id}', [MateriController::class, 'uploadFile']);

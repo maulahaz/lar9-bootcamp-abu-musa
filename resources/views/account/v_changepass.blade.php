@@ -61,8 +61,8 @@
               </div>
               <!-- /.card-body -->
               <div class="card-footer">
-                <button type="submit" class="btn btn-info">Simpan</button>
-                <a href="{{ url('account/profile') }}" class="btn btn-default">Batal</a>
+                <button type="submit" class="btn btn-sm btn-info"><i class="fa fa-save"></i>&nbsp;Simpan</button>
+                <a href="{{ url('account/profile') }}" class="btn btn-sm btn-default"><i class="fa fa-times"></i>&nbsp;Batal</a>
               </div>
               <!-- /.card-footer -->
             </form>

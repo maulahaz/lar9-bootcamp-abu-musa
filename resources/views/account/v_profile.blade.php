@@ -99,7 +99,7 @@
                   <!-- /.tab-pane -->
 
                   <div class="tab-pane" id="edit-data">
-                    <form class="form-horizontal" action="{{url('account/update/'.$dtUser->id)}}" method="POST">
+                    <form class="form-horizontal myform" action="{{url('account/update/'.$dtUser->id)}}" method="POST">
                     @csrf
                       <div class="form-group row">
                         <label class="col-sm-2 col-form-label">Nama</label>
@@ -115,7 +115,7 @@
                       </div>
                       <div class="form-group row">
                         <div class="offset-sm-2 col-sm-10">
-                          <button type="submit" class="btn btn-sm btn-warning"><i class="fa fa-save"></i>&nbsp;Simpan</button>
+                          <button type="submit" class="btn btn-sm btn-warning confirmation" data-flag="0" data-action="update"><i class="fa fa-save"></i>&nbsp;Simpan</button>
                         </div>
                       </div>
                     </form>
@@ -153,9 +153,9 @@
           <form action="{{ url('account/delete-picture', [$dtUser->id]) }}" method="POST">
             @method('DELETE')
             @csrf
-            <button type="submit" class="btn btn-sm btn-danger">Ya, Hapus gambar!</button>
+            <button type="submit" class="btn btn-sm btn-danger"><i class="fa fa-check"></i>&nbsp;Ya, Hapus gambar!</button>
           </form>
-          <button class="btn btn-sm btn-default" data-dismiss="modal">Batal</button>
+          <button class="btn btn-sm btn-default" data-dismiss="modal"><i class="fa fa-times"></i>&nbsp;Batal</button>
         </div>
       </div>
       <!-- /.modal-content -->

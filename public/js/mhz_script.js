@@ -37,4 +37,23 @@ $(document).ready(function(){
             }
         });
     });
+
+    //--Updating Confirmation:
+    $(".confirmUpdate").click(function(){
+        var controller = $(this).attr("controller");
+        var record_id = $(this).attr("record_id");
+        Swal.fire({
+            title: "Confirmation",
+            text: "You are about to update this data. Proceed?",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonText: 'Yes, Update it!'
+        }).then((result) => {
+            console.log(result);
+            if(result.value){
+                window.location.href = controller+"/update/"+record_id;
+            }
+        });
+    });
+
 });

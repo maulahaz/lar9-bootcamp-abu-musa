@@ -252,6 +252,38 @@
     $(function() {
       bsCustomFileInput.init();
     });
+
+    $('.confirmation').on('click', function (e) {
+      $flag = $(this).attr('data-flag');
+      $action = $(this).attr("data-action");
+      $controller = $(this).attr("data-controller");
+      $record_id = $(this).attr("data-id");
+      if($flag == 0){
+        e.preventDefault();
+
+        Swal.fire({
+          title: "Konfirmasi", //"Confirmation",
+          text: "Anda akan melakukan "+$action+" data. Eksekusi?",
+          icon: "warning",
+          showCancelButton: true,
+          cancelButtonText: "Batal",
+          confirmButtonText: 'Ya, Eksekusi!'
+        }).then((result) => {
+            
+            if(result.value){
+              if($controller !== null){
+                // console.log($controller+$record_id);
+                window.location.href = $controller+$record_id;
+              }else{
+                $('.confirmation').attr('data-flag', '1');
+                $('.myform').submit();
+              }
+              
+            }
+        });
+      }
+      
+    });
   </script>
 
   <!-- Custom Javascript File -->

@@ -20,6 +20,7 @@
             <a href="{{ url('/admin/user') }}" class="btn btn-sm btn-outline-info"><i class="fa fa-chevron-left"></i>&nbsp;List Data</a>
             @if($loggedinInfo->role_id != 1)
             <a href="{{ url('/admin/user/'.$dtUser->id.'/edit') }}" class="btn btn-sm btn-warning"><i class="fa fa-edit"></i>&nbsp;Edit Data</a>
+            <button type="button" class="btn btn-sm btn-outline-danger confirmation" data-flag="0" data-action="reset" data-id="{{$dtUser->id}}" data-controller="reset-password/{{$dtUser->id}}"><i class="fa fa-undo"></i>&nbsp;Reset Password</button>
             <button type="button" class="btn btn-sm btn-danger float-right" data-toggle="modal" data-target="#modal-delete-{{$dtUser->id}}"><i class="fa fa-trash"></i>&nbsp;Hapus Data</button>
             @endif
           </div>

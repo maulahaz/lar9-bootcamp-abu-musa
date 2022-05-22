@@ -1,10 +1,32 @@
+== 2022-05-10, @MHz-FanlessPC ==
+- To be done:
+    *. Link "Kumpulin Tugas" di module Tugas dari sisi User, juga di buat kan CRUD "upload kumpulin tugas"
+    *. Link Lihat Detail Desckripsi materi di Module Materi dr sisi User, juga link Video langsung di buat link ke tempat tujuan.
+    *. Module Account>Dashboard, info utk info si User udah ngumpulin tugas atau belum, Ada tugas ato nggak.
+
 == 2022-05-08, @MHz-FanlessPC ==
 - To be done:
-    -Module Ujian, Benerin CRUD
-    -Delete mending di seragamin pake SweetAlert biar cepet utk CRUD Module yg lain
-    [
-        <button type="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#modal-delete-{{$row->id}}"><i class="fa fa-trash"></i>&nbsp;Delete</button>
+    -[v] Module Ujian, Benerin CRUD
+    -[8] Delete mending di seragamin pake SweetAlert biar cepet utk CRUD Module yg lain
+    --> Effectif jika dilakukan utk yg punya 1 ata 2 data saja, tapi klo data dari FORM mending pake cara Submit Form aza.
+    --> Klo pake tag BUTTON:
+        <button class="common" data-id="1500" data-status="sale" data-number="1">1</button>
+    $(".common").on("click",function(){
+        var data_id = $(this).attr('data-id');
+        var data_status = $(this).attr('data-status');
+        var data_number = $(this).attr('data-number');
+    });
+        --OR--
+    elements.item([i]).data('status'); //if jquery enabled
+    elements.item([i]).data('number'); //if jquery enabled
+
+    --> Klo pake tag A-HREF:
         <a href="javascript:void(0)" class="btn btn-sm btn-warning confirmDelete" record="user" record_id="{{$row->id}}"><i class="fa fa-edit"></i>&nbsp;Hapus</a>
+    $(".confirmDelete").click(function(){
+        var record = $(this).attr("record");
+        var record_id = $(this).attr("record_id");
+    });
+    [
         
         //--Delete Record:
     $(".confirmDelete").click(function(){

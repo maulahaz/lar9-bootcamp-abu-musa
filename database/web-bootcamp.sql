@@ -130,7 +130,7 @@ CREATE TABLE IF NOT EXISTS `tbl_materi` (
 -- Dumping data for table web_bootcamp.tbl_materi: ~3 rows (approximately)
 /*!40000 ALTER TABLE `tbl_materi` DISABLE KEYS */;
 INSERT INTO `tbl_materi` (`id`, `title`, `posted_dt`, `category`, `content`, `slug`, `author`, `picture`, `video_url`, `status`, `notes`, `created_by`, `created_at`, `updated_by`, `updated_at`) VALUES
-	(2, 'Laravel', '2022-04-02', 'umum', 'Ini isi materi nya.', 'laravel', 'Abu Musa', 'kaca-spion.jpg', 'youtube.com/lara1', 'published', 'belajar upload', 'admin', '2022-04-02 02:32:17', NULL, '2022-04-15 07:53:35'),
+	(2, 'Laravel', '2022-04-02', 'umum', 'Ini isi materi nya.', 'laravel', 'Abu Musa', 'kaca-spion.jpg', 'youtube.com/lara1', 'published', 'belajar upload', 'admin', '2022-04-02 02:32:17', NULL, '2022-05-08 14:33:48'),
 	(3, 'Laravel 2', '2022-04-15', 'umum', 'Ini isi materi nya.', 'laravel-2', 'Abu Musa', 'paper-curled-glossy-page.jpg', 'www.vimeo.com/kasdjh667', 'published', 'belajar pagination', 'admin', '2022-04-15 03:45:45', NULL, '2022-04-15 07:53:41'),
 	(4, 'Materi 3 Bootstrap', '2022-04-15', 'umum', 'Ini isi materi nya.', 'materi-3-bootstrap', 'Abu Isya', 'ride-sharing.png', 'www.youtube.com/v/sdfjk675arwf', 'published', 'belajar auto numbering', 'admin', '2022-04-15 03:49:18', NULL, '2022-04-15 07:53:50');
 /*!40000 ALTER TABLE `tbl_materi` ENABLE KEYS */;
@@ -168,11 +168,11 @@ CREATE TABLE IF NOT EXISTS `tbl_tugas` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table web_bootcamp.tbl_tugas: ~2 rows (approximately)
+-- Dumping data for table web_bootcamp.tbl_tugas: ~3 rows (approximately)
 /*!40000 ALTER TABLE `tbl_tugas` DISABLE KEYS */;
 INSERT INTO `tbl_tugas` (`id`, `title`, `start_at`, `deadline_at`, `category_id`, `notes`, `created_by`, `created_at`, `updated_by`, `updated_at`) VALUES
-	(1, 'Pembuatan web portfolio menggunakan Javascript', '2022-04-01', '2022-06-30', 2, NULL, 'admin', '2022-04-02 04:19:10', 'admin', '2022-04-04 05:07:05'),
-	(2, 'Cara Install Laravel 9', '2022-04-04', '2022-04-04', 1, 'Hanya menggunakan mySQL bukan yg lain', 'admin', '2022-04-04 05:01:41', NULL, '2022-04-04 05:01:41'),
+	(1, 'Pembuatan web portfolio menggunakan Javascript', '2001-01-20', '2030-01-20', 2, 'ket', 'admin', '2022-04-02 04:19:10', 'admin', '2022-05-10 05:58:41'),
+	(2, 'Cara Install Laravel 9', '2004-01-20', '2004-01-20', 2, 'Hanya menggunakan mySQL bukan yg lain', 'admin', '2022-04-04 05:01:41', 'admin', '2022-05-10 05:59:00'),
 	(3, 'Tugas Membaca Materi', '2022-04-05', '2022-04-06', 1, 'Tugas Membaca Materi', 'admin', '2022-04-05 08:32:53', NULL, '2022-04-05 08:32:53');
 /*!40000 ALTER TABLE `tbl_tugas` ENABLE KEYS */;
 
@@ -198,9 +198,9 @@ CREATE TABLE IF NOT EXISTS `users` (
 -- Dumping data for table web_bootcamp.users: ~5 rows (approximately)
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`, `username`, `role_id`, `status`, `picture`) VALUES
-	(1, 'Webmaster', 'webmaster@apps.com', '2022-03-02 07:15:17', '$2y$10$Ium80ucfGXGX.igoQq6hTemaCnVNGSEQyLjMMpdRYLaxzNC2VUkFi', NULL, '2022-04-01 03:32:19', '2022-04-01 03:32:19', 'webmaster', 99, 'active', 'webmaster.png'),
+	(1, 'Webmaster', 'webmaster@apps.com', '2022-03-02 07:15:17', '$2y$10$Ium80ucfGXGX.igoQq6hTemaCnVNGSEQyLjMMpdRYLaxzNC2VUkFi', NULL, '2022-04-01 03:32:19', '2022-05-08 13:29:28', 'webmaster', 99, 'Inactive', 'webmaster.png'),
 	(3, 'Administrator', 'admin@admin.com', '2022-04-01 06:42:44', '$2y$10$Ium80ucfGXGX.igoQq6hTemaCnVNGSEQyLjMMpdRYLaxzNC2VUkFi', NULL, '2022-04-01 03:32:19', '2022-04-14 08:29:06', 'admin', 88, 'Active', 'admin.jpg'),
-	(4, 'Staff One', 'staff-one@apps.com', '2022-04-04 09:18:17', '$2y$10$ejbQirj.xKIQhh3zqM8RFuYpEdZKGu5J/3tFjNoXv.htcl/C.wX6K', NULL, '2022-04-01 03:32:19', '2022-04-30 06:35:57', 'staff_1', 1, 'Active', 'user.png'),
+	(4, 'Staff One', 'staff-one@apps.com', '2022-04-04 09:18:17', '$2y$10$ejbQirj.xKIQhh3zqM8RFuYpEdZKGu5J/3tFjNoXv.htcl/C.wX6K', NULL, '2022-04-01 03:32:19', '2022-05-10 08:16:10', 'staff_1', 1, 'Active', 'user.png'),
 	(5, 'Supervisor One', 'spv-one@apps.com', '2022-04-04 09:18:17', '$2y$10$Ium80ucfGXGX.igoQq6hTemaCnVNGSEQyLjMMpdRYLaxzNC2VUkFi', NULL, '2022-04-01 03:32:19', '2022-04-05 11:32:52', 'spv_1', 2, 'Active', 'spv.png'),
 	(6, 'Manager One', 'mgr-one@apps.com', '2022-04-04 09:18:17', '$2y$10$Ium80ucfGXGX.igoQq6hTemaCnVNGSEQyLjMMpdRYLaxzNC2VUkFi', NULL, '2022-04-01 03:32:19', '2022-04-05 11:32:53', 'mgr_1', 5, 'Inactive', 'mgr.png');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
