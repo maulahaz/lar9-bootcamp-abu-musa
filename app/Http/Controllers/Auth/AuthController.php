@@ -64,6 +64,12 @@ class AuthController extends Controller
         return redirect()->route('dashboard');
     }
 
+    public function forgot()
+    {
+        die('<h1>Sorry, Page Under Construction</h1>');
+        return view('templates.adminlte.v_forgot', $this->data);
+    }
+
     public function logout()
     {
         auth()->logout();

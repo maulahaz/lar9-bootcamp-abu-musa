@@ -11,6 +11,8 @@ use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\AccountController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PageController;
+use App\Http\Controllers\TugasExecController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -38,6 +40,7 @@ Route::post('login', [AuthController::class, 'submit_login'])->middleware('guest
 Route::get('logout', [AuthController::class, 'logout'])->name('logout');
 Route::get('register', [AuthController::class, 'register'])->name('register');
 Route::post('register', [AuthController::class, 'submit_register']);
+Route::get('forgot', [AuthController::class, 'forgot']);
 
 //--ACCOUNT:
 Route::get('account/dashboard', [AccountController::class, 'dashboard']);
@@ -50,6 +53,9 @@ Route::match(['GET','POST'],'account/changepass', [AccountController::class, 'ch
 //--DASHBOARD:
 // Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 // Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
+
+//--PAGE:
+Route::get('/undercon', [PageController::class, 'undercon']);
 
 //--USER:
 Route::post('/admin/user/update-status-user', [UserController::class, 'updateStatusUser']);
@@ -66,3 +72,6 @@ Route::resource('admin/materi', MateriController::class);
 
 //--TUGAS:
 Route::resource('admin/tugas', TugasController::class);
+
+//--TUGAS Execution:
+Route::get('tugas-exec', [TugasExecController::class, 'index']);

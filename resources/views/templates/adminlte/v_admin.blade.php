@@ -148,6 +148,12 @@
                 </li>
               </ul>
             </li>
+            <li class="nav-item">
+              <a href="{{url('tugas-exec')}}" class="nav-link {{request()->is('tugas-exec') ? 'active' : ''}}">
+                <i class="nav-icon fas fa-tasks"></i>
+                <p>Tugas Ku</p>
+              </a>
+            </li>
             @if($loggedinInfo->role_id != 1)
             <li class="nav-item">
               <a href="{{url('admin/user')}}" class="nav-link {{request()->is('admin/user') ? 'active' : ''}}">
