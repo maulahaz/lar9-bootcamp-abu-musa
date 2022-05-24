@@ -50,9 +50,9 @@
                 <tr class="text-center">
                   <th>No.</th>
                   <th>Judul</th>
-                  <th>Mulai</th>
-                  <th>Status</th>
-                  <th>Tgl Selesai</th>
+                  <th>Batas waktu</th>
+                  <th>Status</th> 
+                  <th>Tgl Update</th>
                   <th>Keterangan</th>
                   <th>Aksi</th>
                 </tr>
@@ -64,12 +64,27 @@
                 <tr>
                   <td>{{$no++}}</td>
                   <td>{{$row->title}}</td>
-                  <td>{{$row->start_at}}</td>
-                  <td class='text-center' style="{{ ($row->status) ? null : 'color: red'}}"><?= ($row->status) ? $row->status : 'Belum dikerjakan'?></td>
+                  <td>{{$row->deadline_at}}</td>
+                  <td class='text-center'>
+                    @switch($row->status)
+                    @case('selesai')
+                    <span class="badge badge-success">Sudah dikerjakan</span>
+                    @break
+                    @case('disetujui')
+                    <span class="badge badge-success">Tugas disetujui</span>
+                    @break
+                    @case('ditolak')
+                    <span class="badge badge-danger">Tugas ditolak</span>
+                    @break
+                    @default
+                    <span class="badge badge-warning">Belum dikerjakan</span>
+                    @endswitch
+                  </td>
+                  <!-- <td class='text-center' style="{{ ($row->status) ? null : 'color: red'}}"><?= ($row->status) ? $row->status : 'Belum dikerjakan'?></td> -->
                   <td>{{($row->tex_update) ? $row->tex_update : '---'}}</td>
                   <td>{{($row->tex_notes )? $row->tex_notes : '---'}}</td>
                   <td>
-                    <a href="{{ url('tugas-exec/'.$row->id) }}" class="btn btn-sm btn-info"><i class="fa fa-search"></i>&nbsp;Detail</a>
+                    <a href="{{ url('tugas-exec/'.$row->tid) }}" class="btn btn-sm btn-info"><i class="fa fa-search"></i>&nbsp;Detail</a>
                   </td>
                 </tr>
                 @endforeach

@@ -120,20 +120,4 @@ class TugasController extends Controller
             return redirect()->back()->with('error', 'Error pada saat hapus data. Silahkan hubungi Administrator.');
         }
     }
-
-    function tugasExec()
-    {
-        $userId = Auth::user()->id;
-        $this->data['pageTitle'] = 'List Data Tugas';
-        $dtTugas = DB::table('tbl_tugas as tgs')
-            ->join('tbl_tugas_exec as txe', 'txe.tugas_id', '=', 'tgs.id')
-            // ->join('users as usr', 'usr.username', '=', 'txe.username')
-            ->select('*')
-            ->where('txe.username', $userId)
-            // ->where('txe.status', 'selesai')
-            ->get();
-        $this->data['dtTugas'] = $dtTugas;  
-        // dd($this->data);
-        return view('admin.tugas.v_tugas_exec', $this->data);
-    }
 }
