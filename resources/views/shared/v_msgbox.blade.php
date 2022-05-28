@@ -1,6 +1,6 @@
 @if($errors->any())
 	<div class="alert alert-warning alert-dismissible fade show" role="alert">
-	  <strong>Whoops!</strong> Input problem.
+	  <strong>Ooo..Oow..</strong> Ada masalah.
 	  	<ul>
 			@foreach($errors->all() as $error)
 			<li>{{ $error }}</li>

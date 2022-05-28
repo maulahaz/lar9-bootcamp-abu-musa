@@ -22,12 +22,12 @@
             <!-- Upload Tugas sama kaya CREATE NEW DATA di tbl_tugas_exec -->
             <!-- if(empty($dtTugas->evidence)) -->
             @if(empty($dtTugas->status))
-            <!-- Klo ga ada attachment, buat data baru di tbl_tugas_exec -->
-            <a href="{{ url('tugas-exec/create') }}" class="btn btn-sm btn-warning"><i class="fa fa-edit"></i>&nbsp;Upload Tugas</a>
+            <!-- Klo ga ada attachment atau Status nya masih kosong, buat data baru di tbl_tugas_exec -->
+            <a href="{{ url('tugas-exec/create/'.$updateID) }}" class="btn btn-sm btn-warning"><i class="fa fa-edit"></i>&nbsp;Upload Tugas</a>
             @else
             <!-- Klo ADA attachment, EDIT data (tbl_tugas_exec) yg aktive di show -->
               @if($loggedinInfo->role_id == 1)
-              <!-- Klo USER: Murid, maka "Edit Tugas" -->
+              <!-- Klo USER: Murid, maka "Edit Tugas (cek executionID)" -->
               <a href="{{ url('tugas-exec/'.$dtTugas->texId.'/edit') }}" class="btn btn-sm btn-warning"><i class="fa fa-edit"></i>&nbsp;Edit Tugas</a>
               @else
               <!-- Klo USER: Guru, maka "Periksa/Approval Tugas" -->
@@ -132,7 +132,7 @@
               <!-- Tombol Hapus Di jangan di tampilkan, Hapus bisa lewat Edit Siswa: -->
               <p style="display: none;"><button class="btn btn-sm btn-outline-danger" data-toggle="modal" data-target="#delete-file-modal"><i class="fa fa-times"></i> Hapus & Ganti Lampiran</button></p>
               <p style="width:200px; text-align: center; display: inline-block;">
-                <a href="{{ url('uploads/tugas_exec/'.$dtTugas->evidence) }}"><i class="fa fa-file"></i>&nbsp;Lampiran Tugas</a>
+                <a href="{{ url('uploads/tugas_exec/'.$dtTugas->evidence) }}"><i class="fa fa-file"></i>&nbsp;File Tugas</a>
               </p>
             </div>
             @endif

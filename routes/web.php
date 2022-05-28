@@ -76,7 +76,11 @@ Route::resource('admin/tugas', TugasController::class);
 //--TUGAS Execution:
 Route::get('tugas-exec', [TugasExecController::class, 'index']);
 Route::get('tugas-exec/create', [TugasExecController::class, 'create']);
+// Route::get('tugas-exec/create/{tugasId}', [TugasExecController::class, 'createTugasExecution']);
+Route::match(['get','post'],'tugas-exec/create/{tugasId}', [TugasExecController::class, 'createTugasExecution']);
 Route::get('tugas-exec/{id}', [TugasExecController::class, 'show']);
 Route::get('tugas-exec/{id}/edit', [TugasExecController::class, 'edit']);
+// Route::get('tugas-exec/{exeId}/edit/{tgId}', [TugasExecController::class, 'edit']);
+Route::post('tugas-exec/update/{tugasId}', [TugasExecController::class, 'updateTugasExecution']);
 Route::post('tugas-exec/upload-file/{id}', [TugasExecController::class, 'uploadFile']);
 Route::delete('tugas-exec/delete-file/{id}', [TugasExecController::class, 'removeFile']);

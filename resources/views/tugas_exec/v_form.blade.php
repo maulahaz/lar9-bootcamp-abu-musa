@@ -33,9 +33,18 @@
           <div class="card-header">
             <h3 class="card-title">Form {{ $pageTitle }}</h3>
           </div>
-          <div class="row">
-            <div class="col-4">
-            @if(empty($dtTugas->evidence))
+            
+          @if (!empty($dtTugas))
+          <form action="{{ url('tugas-exec', $updateID) }}" class="form-horizontal" name="frm_update" method="POST">
+            @method('PATCH')
+            @else
+          <form name="frm_create" action="{{ url('tugas-exec') }}" method="POST" class="form-horizontal">
+            @endif
+            {{ csrf_field() }}
+            <div class="card-body">
+                  
+
+                @if(empty($dtTugas->evidence))
             <!-- <div class="input-group">
               <div class="custom-file">
                 <input type="file" name="tugas-file" class="custom-file-input">
@@ -70,18 +79,14 @@
                   
                 </div>
               </div> -->
-            </div>
-            <div class="col-8">
               <!-- form start -->
-              @if (!empty($dtTugas))
-              <form action="{{ url('tugas-exec', $updateID) }}" class="form-horizontal" name="frm_update" method="POST">
-                @method('PATCH')
-                @else
-              <form name="frm_create" action="{{ url('tugas-exec') }}" method="POST" class="form-horizontal">
-                @endif
-                {{ csrf_field() }}
-                <div class="card-body">
-                  
+
+
+
+
+
+
+
                   @if($loggedinInfo->role_id != 1)
                   <!-- KLO yang login GURU, maka ada tombol Change Status dan Point -->
                   <div class="form-group row">

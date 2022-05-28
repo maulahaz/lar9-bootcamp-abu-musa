@@ -70,7 +70,7 @@ return [
     */
 
     // 'timezone' => 'UTC',
-    'timezone' => 'Asia/Abu Dhabi',
+    'timezone' => 'Asia/Dubai',
 
     /*
     |--------------------------------------------------------------------------
