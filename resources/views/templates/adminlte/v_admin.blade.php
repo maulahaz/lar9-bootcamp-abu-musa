@@ -44,10 +44,7 @@
           <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
         </li>
         <li class="nav-item d-none d-sm-inline-block">
-          <a href="index3.html" class="nav-link">Home</a>
-        </li>
-        <li class="nav-item d-none d-sm-inline-block">
-          <a href="#" class="nav-link">Contact</a>
+          <a href="{{url('/')}}" class="nav-link">Home</a>
         </li>
       </ul>
 
@@ -78,12 +75,14 @@
 
     <!-- Main Sidebar Container -->
     <aside class="main-sidebar sidebar-dark-primary elevation-4">
+      <div class="brand-logo text-center">
       <!-- Brand Logo -->
       <a href="{{url('/')}}" class="brand-link">
-        <img src="{{url('images/icon.png')}}" alt="Apps Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-        <span class="brand-text font-weight-light">Kurses</span>
+        <!-- <img src="{{url('images/logo.png')}}" alt="Apps Logo" class="brand-image img-circle elevation-3" style="opacity: .8"> -->
+        <img src="{{url('images/kurses-bg.png')}}" alt="Apps Logo" width="150px">
+        <!-- <span class="brand-text font-weight-light">Kurses</span> -->
       </a>
-
+      </div>
       <!-- Sidebar -->
       <div class="sidebar">
         <!-- Sidebar user panel (optional) -->
@@ -107,7 +106,7 @@
             <li class="nav-header">ADMIN</li>
             <li class="nav-item has-treeview {{request()->is('admin/materi') ? 'menu-open' : 'menu-close'}}">
               <a href="#" class="nav-link">
-                <i class="nav-icon fas fa-users"></i>
+                <i class="nav-icon fas fa-book"></i>
                 <p>Materi<i class="right fas fa-angle-left"></i></p>
               </a>
               <ul class="nav nav-treeview">
@@ -117,17 +116,17 @@
                     <p>List</p>
                   </a>
                 </li>
-                <li class="nav-item">
+                <!-- <li class="nav-item">
                   <a href="{{ url('admin/materi/report') }}" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Report</p>
                   </a>
-                </li>
+                </li> -->
               </ul>
             </li>
             <li class="nav-item has-treeview {{request()->is('admin/tugas') ? 'menu-open' : 'menu-close'}}">
               <a href="#" class="nav-link {{request()->is('tugas') ? 'active' : ''}}">
-                <i class="nav-icon fas fa-tachometer-alt"></i>
+                <i class="nav-icon fas fa-tasks"></i>
                 <p>
                   Tugas
                   <i class="right fas fa-angle-left"></i>
@@ -140,25 +139,27 @@
                     <p>List</p>
                   </a>
                 </li>
-                <li class="nav-item">
-                  <a href="{{ url('admin/tugas/report') }}" class="nav-link">
+                <!-- <li class="nav-item">
+                  <a href="{{ url('admin/tugas/check') }}" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
-                    <p>Report</p>
+                    <p>Periksa Tugas</p>
                   </a>
-                </li>
+                </li> -->
               </ul>
             </li>
+            @if($loggedinInfo->role_id == 1)
             <li class="nav-item">
               <a href="{{url('tugas-exec')}}" class="nav-link {{request()->is('tugas-exec') ? 'active' : ''}}">
                 <i class="nav-icon fas fa-tasks"></i>
                 <p>Tugas Ku</p>
               </a>
             </li>
+            @endif
             @if($loggedinInfo->role_id != 1)
             <li class="nav-item">
               <a href="{{url('admin/user')}}" class="nav-link {{request()->is('admin/user') ? 'active' : ''}}">
-                <i class="nav-icon fas fa-image"></i>
-                <p>User</p>
+                <i class="nav-icon fas fa-users"></i>
+                <p>Pengguna</p>
               </a>
             </li>
             @endif
@@ -166,13 +167,13 @@
             <li class="nav-header">ACCOUNT</li>
             <li class="nav-item">
               <a href="{{url('account/profile')}}" class="nav-link {{request()->is('account/profile') ? 'active' : ''}}">
-                <i class="nav-icon fas fa-file"></i>
-                <p>Profile</p>
+                <i class="nav-icon fas fa-user-circle"></i>
+                <p>Profil</p>
               </a>
             </li>
             <li class="nav-item">
               <a href="{{url('account/dashboard')}}" class="nav-link {{request()->is('account/dashboard') ? 'active' : ''}}">
-                <i class="nav-icon fas fa-file"></i>
+                <i class="nav-icon fas fa-tachometer-alt"></i>
                 <p>Dashboard</p>
               </a>
             </li>

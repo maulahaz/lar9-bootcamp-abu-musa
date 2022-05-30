@@ -69,9 +69,9 @@
                   <td>{{$no++}}</td>
                   <td>
                     @if(!empty($row->picture))
-                    <img class="profile-user-img img-fluid img-circle" src="{{ url('uploads/materi/'.$row->picture) }}" alt="Materi Icon">
+                    <img class="profile-user-img img-fluid" src="{{ url('uploads/materi/'.$row->picture) }}" alt="Materi Icon">
                     @else
-                    <img class="profile-user-img img-fluid img-circle" src="{{ url('images/noimage.jpg') }}" alt="Materi Icon">
+                    <img class="profile-user-img img-fluid" src="{{ url('images/noimage.jpg') }}" alt="Materi Icon">
                     @endif
                   </td>
                   <td>{{$row->title}}</td>

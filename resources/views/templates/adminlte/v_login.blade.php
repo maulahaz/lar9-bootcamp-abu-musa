@@ -21,7 +21,8 @@
 <body class="hold-transition register-page">
 <div class="register-box">
   <div class="register-logo">
-    <a href="{{url('/')}}">{{ $pageTitle }}</a>
+    <!-- <a href="{{url('/')}}">{{ $pageTitle }}</a> -->
+    <a href="{{url('/')}}"><img src="{{url('images/logo.png')}}" alt="Apps Logo" width="200px"></a>
   </div>
 
   <div class="card">
