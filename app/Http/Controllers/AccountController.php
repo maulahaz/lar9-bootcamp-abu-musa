@@ -97,9 +97,9 @@ class AccountController extends Controller
 
     public function uploadFile(Request $request, $id)
     {
-        die('uploadFile');
+        // die('uploadFile');
         $this->validate($request,[
-            'picture' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
+            'foto' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
         ]);
 
         if($request->has('foto')){
@@ -120,18 +120,20 @@ class AccountController extends Controller
 
     public function removeFile($id)
     {
-        die('removeFile');
+        // die('removeFile');
         $dtUser = User::findOrFail($id);
         $picture = $dtUser->picture;
         $file_path = public_path().'/uploads/user/'.$picture;
-        $updateData['picture'] = null;
-        if(file_exists($file_path)){
-            unlink($file_path);
-            if ($dtUser->update($updateData)) {
-                return redirect()->back()->with('success', 'File gambar berhasil di hapus.');
-            }else{
-                return redirect()->back()->with('error', 'Error pada saat hapus file gambar. Silahkan hubungi Administrator.');
-            }
-       }
+
+       $updateData['picture'] = null;
+        if ($dtUser->update($updateData)) {
+            //--Delete file di Path:
+            // ($thisVar != $thatVar ?: doThis()); //--1 line IF without else
+            // if ($thisVar == $thatVar) doThis();
+            if(file_exists($file_path)) unlink($file_path);           
+            return redirect()->back()->with('success', 'File gambar berhasil di hapus.');
+        }else{
+            return redirect()->back()->with('error', 'Error pada saat hapus file gambar. Silahkan hubungi Administrator.');
+        }
     }
 }

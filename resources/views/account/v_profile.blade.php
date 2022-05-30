@@ -58,7 +58,7 @@
                 </div>
                 <hr>
                 <h3 class="profile-username text-center">{{$dtUser->name}}</h3>
-                <p class="text-muted text-center">{{$dtUser->role_id}}</p>
+                <p class="text-muted text-center">Role: {{$dtUser->role_id}}</p>
                 
                 <a href="{{url('account/changepass')}}" class="btn btn-primary btn-block"><b><i class="fa fa-key"></i>&nbsp;Ganti Password</b></a>
                 </div>

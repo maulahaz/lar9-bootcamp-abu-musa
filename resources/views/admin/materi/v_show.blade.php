@@ -44,7 +44,7 @@
                 <dt class="col-sm-3">Kategori</dt>
                 <dd class="col-sm-9">: {{$dtMateri->category }}</dd>
                 <dt class="col-sm-3">Link Video</dt>
-                <dd class="col-sm-9">: <a href="http://{{$dtMateri->video_url }}">Cek dsini</a></dd>
+                <dd class="col-sm-9">: <a href="http://{{$dtMateri->video_url }}" target="_blank">Cek dsini</a></dd>
                 <dt class="col-sm-3">Di buat oleh</dt>
                 <dd class="col-sm-9">: {{$dtMateri->author }}</dd>
                 <dt class="col-sm-3">Catatan</dt>

@@ -92,7 +92,7 @@
           </div>
           <div class="info">
             @if(auth()->user())
-            <a href="#" class="d-block">{{ Auth::user()->username }}</a>
+            <a href="#" class="d-block">{{ Auth::user()->name }}</a>
             @else
             Guess
             @endif

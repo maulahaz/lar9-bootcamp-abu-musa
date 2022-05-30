@@ -31,7 +31,7 @@
                 type="text"
                 class="form-control"
                 id="search_input"
-                placeholder="Search Here"
+                placeholder="Cari disini..."
               />
               <button type="submit" class="btn"></button>
               <span
@@ -117,7 +117,7 @@
                     role="button"
                     aria-haspopup="true"
                     aria-expanded="false"
-                    ><i class="ti-user"></i>&nbsp;&nbsp;<?=Auth::user()->username;?></a
+                    ><i class="ti-user"></i>&nbsp;&nbsp;<?=Auth::user()->name;?></a
                   >
                   <ul class="dropdown-menu">
                     <li class="nav-item">

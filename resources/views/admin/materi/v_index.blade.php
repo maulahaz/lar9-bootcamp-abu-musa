@@ -78,7 +78,7 @@
                   <td>{{$row->posted_dt}}</td>
                   <td>{{$row->category}}</td>
                   <td>{{$row->status}}</td>
-                  <td><a href="http://{{$row->video_url }}">Cek dsini</a></td>
+                  <td><a href="http://{{$row->video_url }}" target="_blank">Cek dsini</a></td>
                   <td>
                     <a href="{{ url('/admin/materi/'.$row->id) }}" class="btn btn-sm btn-info"><i class="fa fa-search"></i>&nbsp;Detail</a>
                     <!-- <a href="{{ url('/admin/materi/'.$row->id.'/edit') }}" class="btn btn-sm btn-warning"><i class="fa fa-edit"></i>&nbsp;Edit</a> -->

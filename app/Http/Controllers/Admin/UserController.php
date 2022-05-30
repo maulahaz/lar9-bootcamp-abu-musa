@@ -22,7 +22,7 @@ class UserController extends Controller
         $this->data['pageTitle'] = 'List Data Pengguna';
         // $this->data['dtUser'] = User::all();
         //--Utk Data Webmaster jangan dimasukan:
-        $this->data['dtUser'] = User::whereNotIn('role_id', [88])->get();
+        $this->data['dtUser'] = User::whereNotIn('role_id', [88,99])->get();
 
         return view('admin.user.v_index', $this->data);
     }
