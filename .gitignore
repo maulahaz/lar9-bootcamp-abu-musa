@@ -3,6 +3,7 @@
 /public/storage
 /public/t_adminlte3
 /storage/*.key
+/storage/bak/*
 # /vendor
 # .env
 .env.backup
