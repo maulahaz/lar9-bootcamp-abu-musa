@@ -115,7 +115,8 @@
                       </div>
                       <div class="form-group row">
                         <div class="offset-sm-2 col-sm-10">
-                          <button type="submit" class="btn btn-sm btn-warning confirmation" data-flag="0" data-action="update"><i class="fa fa-save"></i>&nbsp;Simpan</button>
+                          <!-- <button type="submit" class="btn btn-sm btn-warning confirmation" data-flag="0" data-action="update"><i class="fa fa-save"></i>&nbsp;Simpan</button> -->
+                          <button type="submit" class="btn btn-sm btn-warning confirmBeforePost"><i class="fa fa-save"></i>&nbsp;Simpan</button>
                         </div>
                       </div>
                     </form>

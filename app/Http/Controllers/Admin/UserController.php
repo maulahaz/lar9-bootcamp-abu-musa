@@ -95,22 +95,23 @@ class UserController extends Controller
     
     public function update(Request $request, $id)
     {
-        $this->_validateData($request);
+        $this->validate($request,[
+            'status' => 'required',
+            'role_id' => 'required',
+        ]);
 
         $postedData = [
-            'title' => $request->title,
-            'start_at' => date("Y-m-d H:i:s", strtotime($request->start_at)),
-            'deadline_at' => date("Y-m-d H:i:s", strtotime($request->deadline_at)),
-            'category_id' => $request->category_id,
-            'notes' => $request->notes,
-            'updated_by' => Auth::user()->username,
+            'status' => $request->status,
+            'role_id' => $request->role_id,
+            'updated_at' => date("Y-m-d H:i:s"),
         ];
 
         $dtUser = User::findOrFail($id);
         if ($dtUser->update($postedData)) {
-            Session::flash('success', 'Well done, Data has been updated.');
+            return redirect('admin/user')->with('success', 'Data berhasil diupdate.');
+        }else{
+            return redirect()->back()->with('error', 'Error pada saat update data. Silahkan hubungi Administrator.');
         }
-        return redirect('admin/tugas');
     }
 
     function _validateData($request)

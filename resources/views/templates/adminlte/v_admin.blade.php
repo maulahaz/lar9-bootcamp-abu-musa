@@ -277,20 +277,41 @@
           confirmButtonText: 'Ya, Eksekusi!'
         }).then((result) => {
             
-            if(result.value){
-              if($controller !== null){
-                // console.log($controller+$record_id);
-                window.location.href = $controller+$record_id;
-              }else{
-                $('.confirmation').attr('data-flag', '1');
-                $('.myform').submit();
-              }
-              
+          if(result.value){
+            if($controller !== null){
+              // console.log($controller+$record_id);
+              window.location.href = $controller+$record_id;
+            }else{
+              $('.confirmation').attr('data-flag', '1');
+              $('.myform').submit();
             }
+            
+          }
         });
       }
       
     });
+
+    $('.confirmBeforePost').on('click', function (e) {
+      e.preventDefault();
+      var form = $(this).parents('form');
+      Swal.fire({
+        title: "Konfirmasi", //"Confirmation",
+        text: "Anda akan melakukan update data. Eksekusi?",
+        icon: "warning",
+        showCancelButton: true,
+        cancelButtonText: "Batal",
+        confirmButtonText: 'Ya, Eksekusi!'
+      }).then((result) => {
+        if(result.value){
+          // alert(111);
+          form.submit();
+          // Swal.fire('Saved!', '', 'success');
+        };
+      });
+      
+    });
+
   </script>
 
   <!-- Custom Javascript File -->

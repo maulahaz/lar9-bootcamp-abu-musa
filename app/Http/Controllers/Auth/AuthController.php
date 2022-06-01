@@ -35,6 +35,10 @@ class AuthController extends Controller
     		return back()->with('error', 'Invalid login details!');
     	}
 
+        if(Auth::user()->status == 'Inactive'){
+            die('Account anda belum di aktifkan');
+        }
+
         // return redirect()->route('dashboard');
         return redirect('account/profile');
     }
@@ -59,9 +63,11 @@ class AuthController extends Controller
             'username' 		=>  $request->username,
             'email'  		=>  $request->email,
             'password'  	=>  Hash::make($request->password),
+            'role_id'  		=>  1,
+            'status'  		=>  'Active',
         ]);
 
-        return redirect()->route('dashboard');
+        return redirect('account/profile');
     }
 
     public function forgot()

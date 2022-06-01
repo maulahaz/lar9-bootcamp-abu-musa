@@ -37,12 +37,12 @@
 
           <!-- form start -->
             @if (!empty($dtUser))
-            <form action="{{ url('admin/tugas', $updateID) }}" class="form-horizontal" id="frm_update" name="frm_update" method="POST">
+            <form action="{{ url('admin/user', $updateID) }}" class="form-horizontal" id="frm_update" name="frm_update" method="POST">
               @method('PATCH')
 
             @else
 
-            <form id="frm_create" name="frm_create" action="{{ url('admin/tugas') }}" method="POST" class="form-horizontal">  
+            <form id="frm_create" name="frm_create" action="{{ url('admin/user') }}" method="POST" class="form-horizontal">  
                 
             @endif
 
@@ -52,7 +52,15 @@
               <div class="form-group row">
                 <label class="col-sm-2 col-form-label">Status</label>
                 <div class="col-sm-3">
-                  <input type="text" class="form-control" name="status" value="{{ !empty($dtUser) ? $dtUser->status : old('status') }}" placeholder="Isi Status Pengguna">
+                  <select name="status" id="status" class="form-control" required>
+                    <option value="">--Pilih--</option>
+                    <?php $optStatus = ['Active'=>'Active', 'Inactive'=>'Inactive']; ?>
+                    
+                    @foreach ($optStatus as $key => $value)
+                        <option value="{{ $key }}" {{ (!empty($dtUser) && ($dtUser->status == $key)) ? 'selected' : '' }}>{{ $value }}</option>
+                    @endforeach
+                  </select>
+                  <!-- <input type="text" class="form-control" name="status" value="{{ !empty($dtUser) ? $dtUser->status : old('status') }}" placeholder="Isi Status Pengguna"> -->
                 </div>
               </div>
 
