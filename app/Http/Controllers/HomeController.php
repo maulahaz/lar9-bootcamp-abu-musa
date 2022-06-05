@@ -40,7 +40,8 @@ class HomeController extends Controller
         //--Data Testimonials:
         $this->data['dtTestimonials'] = Testimonials::all();
         
-        return view('templates/edustage/homepage', $this->data);
+        return view('templates/edustage/master', $this->data);
+        // return view('templates/edustage/homepage', $this->data);
     }
 
 }
