@@ -20,9 +20,10 @@ class KursusController extends Controller
 
     public function index()
     {
-        // die('test');
+        // die('test');s
         $this->data['pageTitle'] = 'List Data Kursus';
-        $this->data['dtKursus'] = Kursus::all();
+        // $this->data['dtKursus'] = Kursus::all();
+        $this->data['dtKursus'] = Kursus::with('trainers')->get();
         // dd($this->data);
         return view('admin.kursus.v_index', $this->data);
     }

@@ -67,9 +67,15 @@
                 	@foreach($dtKursus as $row)
                   <tr>
                     <td>{{$no++}}</td>
-                    <td>{{$row->picture}}</td>
+                    <td>
+                      @if(!empty($row->picture))
+                      <img class="profile-user-img img-fluid" src="{{ url('uploads/kursus/'.$row->picture) }}" alt="Gambar Kursus">
+                      @else
+                      <img class="profile-user-img img-fluid" src="{{ url('images/noimage.jpg') }}" alt="Gambar Kursus">
+                      @endif
+                    </td>
                     <td>{{$row->title}}</td>
-                    <td>{{$row->author}}</td>
+                    <td>{{$row->trainers->name}}</td>
                     <td>{{$row->category}}</td>
                     <td>{{$row->price}}</td>
                     <td>
