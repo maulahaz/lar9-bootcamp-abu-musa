@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\MateriController;
 use App\Http\Controllers\Admin\TugasController;
+use App\Http\Controllers\Admin\KursusController;
 //--AUTH:
 use App\Http\Controllers\Auth\AuthController;
 //--PUBLIC:
@@ -69,6 +70,11 @@ Route::get('/admin/user/reset-password/{id}', [UserController::class, 'resetPass
 Route::put('/admin/materi/upload-picture/{id}', [MateriController::class, 'uploadFile']);
 Route::delete('/admin/materi/delete-picture/{id}', [MateriController::class, 'removeFile']);
 Route::resource('admin/materi', MateriController::class);
+
+//--KURSUS:
+Route::put('/admin/kursus/upload-picture/{id}', [KursusController::class, 'uploadFile']);
+Route::delete('/admin/kursus/delete-picture/{id}', [KursusController::class, 'removeFile']);
+Route::resource('admin/kursus', KursusController::class);
 
 //--TUGAS:
 Route::get('admin/tugas/{tugasId}/check', [TugasController::class, 'check']);

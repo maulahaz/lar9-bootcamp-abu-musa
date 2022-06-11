@@ -147,6 +147,20 @@
                 </li> -->
               </ul>
             </li>
+            <li class="nav-item has-treeview {{request()->is('admin/materi') ? 'menu-open' : 'menu-close'}}">
+              <a href="#" class="nav-link">
+                <i class="nav-icon fas fa-book"></i>
+                <p>Kursus<i class="right fas fa-angle-left"></i></p>
+              </a>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="{{ url('admin/kursus') }}" class="nav-link {{request()->is('admin/kursus') ? 'active' : ''}}">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>List</p>
+                  </a>
+                </li>
+              </ul>
+            </li>
             @if($loggedinInfo->role_id == 1)
             <li class="nav-item">
               <a href="{{url('tugas-exec')}}" class="nav-link {{request()->is('tugas-exec') ? 'active' : ''}}">
