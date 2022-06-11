@@ -74,7 +74,7 @@
                     <img class="profile-user-img img-fluid" src="{{ url('images/noimage.jpg') }}" alt="Materi Icon">
                     @endif
                   </td>
-                  <td>{{$row->title}}</td>
+                  <td>{{Str::limit($row->title, 50)}}</td>
                   <td>{{$row->posted_dt}}</td>
                   <td>{{$row->category}}</td>
                   <td>{{$row->status}}</td>

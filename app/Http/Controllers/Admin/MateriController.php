@@ -26,7 +26,7 @@ class MateriController extends Controller
     {
         // die('test');
         $this->data['pageTitle'] = 'List Data Materi Pembelajaran';
-        $this->data['dtMateri'] = MateriModel::all();
+        $this->data['dtMateri'] = MateriModel::all()->sortByDesc("created_at");
         // dd($this->data);
         return view('admin.materi.v_index', $this->data);
     }
