@@ -101,7 +101,7 @@
           @foreach($dtCourses as $rowCourse)
           <div class="single_course">
             <div class="course_head">
-              <img class="img-fluid" src="{{ url('images/courses/'.$rowCourse->course_pict) }}" alt="" />
+              <img class="img-fluid" src="{{ url('uploads/kursus/'.$rowCourse->course_pict) }}" alt="" />
             </div>
             <div class="course_content">
               <span class="price">{{$rowCourse->price}}jt</span>

@@ -119,4 +119,49 @@ class KursusController extends Controller
             return redirect()->back()->with('error', 'Error pada saat hapus data. Silahkan hubungi Administrator.');
         }
     }
+
+    public function uploadFile(Request $request, $id)
+    {
+        // die('uploadFile');
+        $this->validate($request,[
+            'picture' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
+        ]);
+
+        $file_name = $request->file('picture')->getClientOriginalName();
+        $fileName = pathinfo($file_name, PATHINFO_FILENAME);
+        $extension = pathinfo($file_name, PATHINFO_EXTENSION);
+        $newName = $fileName."-".$id.".".$extension;
+        $request->picture->move(public_path('uploads/kursus'), $newName);
+
+        $postedData = [
+            // 'picture' => $filename,
+            'picture' => $newName
+        ];
+        $dtKursus = Kursus::findOrFail($id);
+        if ($dtKursus->update($postedData)) {
+            return redirect()->back()->with('success', 'File gambar berhasil diupload.');
+        }else{
+            return redirect()->back()->with('error', 'Error pada saat upload file gambar. Silahkan hubungi Administrator.');
+        }
+    }
+
+    public function removeFile($id)
+    {
+        // die('removeFile');
+        $dtKursus = Kursus::findOrFail($id);
+        $picture = $dtKursus->picture;
+        $file_path = public_path().'/uploads/kursus/'.$picture;
+        
+        //--Delete file di DB:
+        $updateData['picture'] = null;
+        if ($dtKursus->update($updateData)) {
+            //--Delete file di Path:
+            // ($thisVar != $thatVar ?: doThis()); //--1 line IF without else
+            // if ($thisVar == $thatVar) doThis();
+            if(file_exists($file_path)) unlink($file_path);           
+            return redirect()->back()->with('success', 'File gambar berhasil di hapus.');
+        }else{
+            return redirect()->back()->with('error', 'Error pada saat hapus file gambar. Silahkan hubungi Administrator.');
+        }
+    }
 }

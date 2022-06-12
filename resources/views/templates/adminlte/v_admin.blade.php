@@ -147,6 +147,7 @@
                 </li> -->
               </ul>
             </li>
+            @if($loggedinInfo->role_id == 88)
             <li class="nav-item has-treeview {{request()->is('admin/materi') ? 'menu-open' : 'menu-close'}}">
               <a href="#" class="nav-link">
                 <i class="nav-icon fas fa-book"></i>
@@ -161,6 +162,7 @@
                 </li>
               </ul>
             </li>
+            @endif
             @if($loggedinInfo->role_id == 1)
             <li class="nav-item">
               <a href="{{url('tugas-exec')}}" class="nav-link {{request()->is('tugas-exec') ? 'active' : ''}}">
